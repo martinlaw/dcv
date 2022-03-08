@@ -43,8 +43,7 @@ forest(fe,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
 ```
 
-
-## RE model (REML):
+### REML without HK
 ```{r RE, fig.height=4, fig.width=7}
 re <- rma(yi, vi, data=dat, method="REML") 
 forest(re,
@@ -53,15 +52,21 @@ forest(re,
 re
 ```
 
-## RE model (Hartung-Knapp / Sidik-Jonkman):
+## REML with Hartung-Knapp
 ```{r HK, fig.height=4, fig.width=7}
-hk <- rma(yi, vi, data=dat, method="SJ") 
+hk <- rma(yi, vi, data=dat, method="REML", test="knha") 
 forest(hk,
        atransf=exp,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
+hk
 ```
-```{r PM}
-pm <- rma(yi, vi, data=dat, method="PM") 
+
+## Paule-Mandel with Hartung-Knapp
+```{r PM, fig.height=4, fig.width=7}
+pm <- rma(yi, vi, data=dat, method="PM", test="knha") 
+forest(pm,
+       atransf=exp,
+       at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
 pm
 ```
 
