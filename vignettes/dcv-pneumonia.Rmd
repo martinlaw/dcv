@@ -51,7 +51,7 @@ forest(re,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
 ```
 
-## Standard RE model with Hartung-Knapp
+## Standard RE model with Hartung-Knapp 
 ```{r HK, fig.height=4, fig.width=7}
 hk <- rma(yi, vi, data=dat, method="REML", test="knha") 
 forest(hk,
