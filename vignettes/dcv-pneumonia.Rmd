@@ -1,5 +1,5 @@
 ---
-title: "dcv-pneumonia"
+title: "Meta-Analysis on Postoperative Pneumonia"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{my-vignette}
