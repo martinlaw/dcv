@@ -1,0 +1,17 @@
+---
+title: "Home"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{index}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Click Articles -> Meta-Analysis on Postoperative Pneumonia for analysis
