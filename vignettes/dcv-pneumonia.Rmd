@@ -1,0 +1,67 @@
+---
+title: "dcv-pneumonia"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r library, results="hide", message=FALSE}
+library(metafor)
+```
+
+
+## Input data
+```{r pneumonia }
+dat <- escalc(measure="RR",
+              ai=c(3, 5, 2, 0, 1),
+              bi=c(32, 39, 43, 15, 24),
+              ci=c(6, 7, 4, 1, 2),
+              di=c(29, 35, 41, 14, 23),
+              slab=c("Mahmoud et al, 2017",
+                     "Li et al (Standard), 2020",
+                     "Li et al (OLA), 2020",
+                     "Ammar et al, 2021",
+                     "Yao et al, 2020"))
+```
+
+
+## FE model
+
+```{r FE, fig.height=4, fig.width=7}
+fe <- rma(yi, vi, data=dat, method="FE") 
+forest(fe, 
+       atransf=exp,
+       at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
+```
+
+
+## RE model (REML):
+```{r RE, fig.height=4, fig.width=7}
+re <- rma(yi, vi, data=dat, method="REML") 
+forest(re,
+       atransf=exp,
+       at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
+re
+```
+
+## RE model (Hartung-Knapp / Sidik-Jonkman):
+```{r HK, fig.height=4, fig.width=7}
+hk <- rma(yi, vi, data=dat, method="SJ") 
+forest(hk,
+       atransf=exp,
+       at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
+```
+```{r PM}
+pm <- rma(yi, vi, data=dat, method="PM") 
+pm
+```
+

@@ -14,8 +14,9 @@ exp(dat$yi) # agrees with draft RRs
 rma(yi, vi, data=dat, method="FE") # NOTE: different results to draft
 # RE model (Hartung-Knapp / Sidik-Jonkman):
 rma(yi, vi, data=dat, method="SJ") # NOTE: different results to draft
+rma(yi, vi, data=dat, method="REML") # NOTE: different results to draft
 
-
+usethis::use_vignette("meta")
 
 
 
