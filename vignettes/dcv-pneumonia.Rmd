@@ -59,7 +59,7 @@ forest(hk,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
 ```
 
-## Paule-Mandel with Hartung-Knapp
+## Paule-Mandel with Hartung-Knapp 
 ```{r PM, fig.height=4, fig.width=7}
 pm <- rma(yi, vi, data=dat, method="PM", test="knha") 
 forest(pm,
