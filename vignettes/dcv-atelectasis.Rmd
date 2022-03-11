@@ -1,0 +1,70 @@
+---
+title: "Meta-Analysis on Postoperative Atelectasis"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r library, results="hide", message=FALSE}
+library(metafor)
+```
+
+
+## Input data
+```{r atelectasis}
+dat.atelectasis <- escalc(measure="RR",
+              ai=c(3, 2, 1, 1, 0),
+              bi=c(15, 33, 43, 44, 15),
+              ci=c(4, 6, 4, 2, 1),
+              di=c(15, 29, 38, 43, 14),
+              slab=c("Boules et al, 2011",
+                     "Mahmoud et al, 2017",
+                     "Li et al (Standard), 2020",
+                     "Li et al (OLA), 2020",
+                     "Ammar et al, 2021")
+              )
+```
+
+
+## FE model
+
+```{r FE, fig.height=4, fig.width=7}
+fe <- rma(yi, vi, data=dat.atelectasis, method="FE") 
+forest(fe, 
+       atransf=exp,
+       at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
+```
+
+## Standard RE model without Hartung-Knapp
+```{r RE, fig.height=4, fig.width=7}
+re <- rma(yi, vi, data=dat.atelectasis, method="REML") 
+forest(re,
+       atransf=exp,
+       at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
+```
+
+## Standard RE model with Hartung-Knapp 
+```{r HK, fig.height=4, fig.width=7}
+hk <- rma(yi, vi, data=dat.atelectasis, method="REML", test="knha") 
+forest(hk,
+       atransf=exp,
+       at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
+```
+
+## Paule-Mandel with Hartung-Knapp 
+```{r PM, fig.height=4, fig.width=7}
+pm <- rma(yi, vi, data=dat.atelectasis, method="PM", test="knha") 
+forest(pm,
+       atransf=exp,
+       at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
+```
+
