@@ -54,7 +54,7 @@ re
 ```
 
 ## Paul-Mandel without Hartung-Knapp 
-```{r HK, fig.height=4, fig.width=7}
+```{r PM, fig.height=4, fig.width=7}
 pm <- rma(yi, vi, data=dat.atelectasis, method="PM") 
 forest(pm,
        atransf=exp,
@@ -63,10 +63,43 @@ pm
 ```
 
 ## Paule-Mandel with Hartung-Knapp 
-```{r PM, fig.height=4, fig.width=7}
+```{r PMHK, fig.height=4, fig.width=7}
 pmhk <- rma(yi, vi, data=dat.atelectasis, method="PM", test="knha") 
 forest(pmhk,
        atransf=exp,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
 ```
 
+
+## Sensitivity analysis: Paule-Mandel with/without Hartung-Knapp (OR) 
+```{r OR}
+dat.atelectasis.OR <- escalc(measure="OR",
+              ai=c(3, 2, 1, 1, 0),
+              bi=c(15, 33, 43, 44, 15),
+              ci=c(4, 6, 4, 2, 1),
+              di=c(15, 29, 38, 43, 14),
+              slab=c("Boules et al, 2011",
+                     "Mahmoud et al, 2017",
+                     "Li et al (Standard), 2020",
+                     "Li et al (OLA), 2020",
+                     "Ammar et al, 2021")
+              )
+```
+
+
+```{r "PM - OR", fig.height=4, fig.width=7}
+pm.OR <- rma(yi, vi, data=dat.atelectasis.OR, method="PM") 
+forest(pm.OR,
+       atransf=exp,
+       at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
+pm.OR
+```
+
+```{r "PMHK - OR", fig.height=4, fig.width=7}
+
+pmhk.OR <- rma(yi, vi, data=dat.atelectasis.OR, method="PM", test="knha") 
+forest(pmhk.OR,
+       atransf=exp,
+       at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
+pmhk
+```
