@@ -108,23 +108,63 @@
        atransf<span class="op">=</span><span class="va">exp</span>,
        at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="dcv-atelectasis_files/figure-html/RE-1.png" width="672"></p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">re</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Random-Effects Model (k = 5; tau^2 estimator: REML)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; tau^2 (estimated amount of total heterogeneity): 0 (SE = 0.6048)</span>
+<span class="co">#&gt; tau (square root of estimated tau^2 value):      0</span>
+<span class="co">#&gt; I^2 (total heterogeneity / total variability):   0.00%</span>
+<span class="co">#&gt; H^2 (total variability / sampling variability):  1.00</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Test for Heterogeneity:</span>
+<span class="co">#&gt; Q(df = 4) = 1.1940, p-val = 0.8791</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Model Results:</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; estimate      se     zval    pval    ci.lb   ci.ub </span>
+<span class="co">#&gt;  -0.7766  0.4205  -1.8471  0.0647  -1.6007  0.0475  . </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="standard-re-model-with-hartung-knapp">Standard RE model with Hartung-Knapp<a class="anchor" aria-label="anchor" href="#standard-re-model-with-hartung-knapp"></a>
+<h2 id="paul-mandel-without-hartung-knapp">Paul-Mandel without Hartung-Knapp<a class="anchor" aria-label="anchor" href="#paul-mandel-without-hartung-knapp"></a>
 </h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">hk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat.atelectasis</span>, method<span class="op">=</span><span class="st">"REML"</span>, test<span class="op">=</span><span class="st">"knha"</span><span class="op">)</span> 
-<span class="fu"><a href="https://wviechtb.github.io/metafor/reference/forest.html" class="external-link">forest</a></span><span class="op">(</span><span class="va">hk</span>,
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat.atelectasis</span>, method<span class="op">=</span><span class="st">"PM"</span><span class="op">)</span> 
+<span class="fu"><a href="https://wviechtb.github.io/metafor/reference/forest.html" class="external-link">forest</a></span><span class="op">(</span><span class="va">pm</span>,
        atransf<span class="op">=</span><span class="va">exp</span>,
        at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="dcv-atelectasis_files/figure-html/HK-1.png" width="672"></p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pm</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Random-Effects Model (k = 5; tau^2 estimator: PM)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; tau^2 (estimated amount of total heterogeneity): 0 (SE = 0.6250)</span>
+<span class="co">#&gt; tau (square root of estimated tau^2 value):      0</span>
+<span class="co">#&gt; I^2 (total heterogeneity / total variability):   0.00%</span>
+<span class="co">#&gt; H^2 (total variability / sampling variability):  1.00</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Test for Heterogeneity:</span>
+<span class="co">#&gt; Q(df = 4) = 1.1940, p-val = 0.8791</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Model Results:</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; estimate      se     zval    pval    ci.lb   ci.ub </span>
+<span class="co">#&gt;  -0.7766  0.4205  -1.8471  0.0647  -1.6007  0.0475  . </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="paule-mandel-with-hartung-knapp">Paule-Mandel with Hartung-Knapp<a class="anchor" aria-label="anchor" href="#paule-mandel-with-hartung-knapp"></a>
 </h2>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat.atelectasis</span>, method<span class="op">=</span><span class="st">"PM"</span>, test<span class="op">=</span><span class="st">"knha"</span><span class="op">)</span> 
-<span class="fu"><a href="https://wviechtb.github.io/metafor/reference/forest.html" class="external-link">forest</a></span><span class="op">(</span><span class="va">pm</span>,
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pmhk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat.atelectasis</span>, method<span class="op">=</span><span class="st">"PM"</span>, test<span class="op">=</span><span class="st">"knha"</span><span class="op">)</span> 
+<span class="fu"><a href="https://wviechtb.github.io/metafor/reference/forest.html" class="external-link">forest</a></span><span class="op">(</span><span class="va">pmhk</span>,
        atransf<span class="op">=</span><span class="va">exp</span>,
        at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="dcv-atelectasis_files/figure-html/PM-1.png" width="672"></p>
