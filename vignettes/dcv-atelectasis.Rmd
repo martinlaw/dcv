@@ -50,20 +50,22 @@ re <- rma(yi, vi, data=dat.atelectasis, method="REML")
 forest(re,
        atransf=exp,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
+re
 ```
 
-## Standard RE model with Hartung-Knapp 
+## Paul-Mandel without Hartung-Knapp 
 ```{r HK, fig.height=4, fig.width=7}
-hk <- rma(yi, vi, data=dat.atelectasis, method="REML", test="knha") 
-forest(hk,
+pm <- rma(yi, vi, data=dat.atelectasis, method="PM") 
+forest(pm,
        atransf=exp,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
+pm
 ```
 
 ## Paule-Mandel with Hartung-Knapp 
 ```{r PM, fig.height=4, fig.width=7}
-pm <- rma(yi, vi, data=dat.atelectasis, method="PM", test="knha") 
-forest(pm,
+pmhk <- rma(yi, vi, data=dat.atelectasis, method="PM", test="knha") 
+forest(pmhk,
        atransf=exp,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
 ```
