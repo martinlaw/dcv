@@ -59,9 +59,9 @@ length(fabric.vec)
 hist(fabric.vec, breaks=seq(0.5, 9.5, by=1))
 fabric.df <- data.frame(digit=c(5,9,2,4,7,4,7,8,1,7,1,1,1,8,5,6,1,2,5,5,6,1,6,6,5,7,7,2,3,5,3,1,4,3,
                                  4,8,7,3,6,6,1,7,3,6,2,8,3,1,3,3,2,6))
-library(ggplot2)
-ggplot(fabric.df, aes(x=digit)) +
-  geom_histogram(breaks=seq(0.5, 9.5, by=1), col="black", fill=hue_pal()(1))+
-  scale_x_continuous(breaks=1:9)
+# library(ggplot2)
+# ggplot(fabric.df, aes(x=digit)) +
+#   geom_histogram(breaks=seq(0.5, 9.5, by=1), col="black", fill=hue_pal()(1))+
+#   scale_x_continuous(breaks=1:9)
 
 chisq.test(fabric.vec)
