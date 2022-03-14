@@ -49,6 +49,7 @@ re <- rma(yi, vi, data=dat, method="REML")
 forest(re,
        atransf=exp,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
+re
 ```
 
 ## Standard RE model with Hartung-Knapp 
@@ -57,6 +58,7 @@ hk <- rma(yi, vi, data=dat, method="REML", test="knha")
 forest(hk,
        atransf=exp,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
+hk
 ```
 
 ## Paule-Mandel with Hartung-Knapp 
