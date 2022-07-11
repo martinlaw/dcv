@@ -1,11 +1,11 @@
 pandoc: 2.7.3
-pkgdown: 2.0.2
+pkgdown: 2.0.5
 pkgdown_sha: ~
 articles:
   dcv-atelectasis: dcv-atelectasis.html
   dcv-pneumonia: dcv-pneumonia.html
   index: index.html
-last_built: 2022-03-14T17:39Z
+last_built: 2022-07-11T15:11Z
 urls:
   reference: https://martinlaw.github.io/dcv/reference
   article: https://martinlaw.github.io/dcv/articles
