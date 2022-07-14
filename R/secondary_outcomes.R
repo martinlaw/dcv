@@ -25,24 +25,6 @@ initial.data <- read_xlsx(path="secondary_outcomes-2.xlsx", range="A1:M48", col_
 dat <- escalc(measure="MD", data=initial.data, m1i=m1i, sd1i=sd1i, n1i=n1i, m2i=m2i, sd2i=sd2i, n2i=n2i, slab=study)
 
 
-forestMA <- function(outc, time1){
-  mod <- rma(yi, vi, data=dat, subset = outcome1==outc & time==time1)
-  forest(mod, header=paste(outc, " (", time1, ")", sep=""), cex=1.5)
-  mod
-}
-
-forestMA.PM <- function(outc, time1){
-  mod <- rma(yi, vi, data=dat, subset = outcome1==outc & time==time1, method="PM")
-  forest(mod, header=paste(outc, " (", time1, ")", sep=""), cex=1.5)
-  mod
-}
-
-
-forestMA.PM.HK <- function(outc, time1){
-  mod <- rma(yi, vi, data=dat, subset = outcome1==outc & time==time1, method="PM", test="knha")
-  forest(mod, header=paste(outc, " (", time1, ")", sep=""), cex=1.5)
-  mod
-}
 
 
 #### Check results figures: secondary outcomes ####
@@ -75,7 +57,7 @@ forestMA.PM.HK(outc="Peak", time1="OLV")
 forestMA(outc="pO2", time1="TLV")
 forestMA.PM.HK(outc="pO2", time1="TLV")
 forestMA(outc="pO2", time1="OLV")
-forestMA.PM.HK(outc="pO2", time1="OLV") # error. Fixed below.
+# forestMA.PM.HK(outc="pO2", time1="OLV") # error. Fixed below.
 forest(rma(yi, vi, data=dat, subset = outcome1=="pO2" & time=="OLV", method="PM", test="knha", control=list(tau2.max=1000)))
 # TLV and OLV results have been mixed up in the document
 # (assuming the Excel sheet is correct)
