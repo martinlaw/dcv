@@ -44,25 +44,21 @@ forest(fe,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
 ```
 
-## Standard RE model without Hartung-Knapp
+Note: The standard RE model without Hartung-Knapp-Sidik-Jonkman (HKSJ) modification is identical:
 ```{r RE, fig.height=4, fig.width=7}
 re <- rma(yi, vi, data=dat.atelectasis, method="REML") 
-forest(re,
-       atransf=exp,
-       at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
-re
 ```
 
-## Paul-Mandel without Hartung-Knapp 
+
+## Paul-Mandel without1Hartung-Knapp-Sidik-Jonkman (HKSJ) modification 
 ```{r PM, fig.height=4, fig.width=7}
 pm <- rma(yi, vi, data=dat.atelectasis, method="PM") 
 forest(pm,
        atransf=exp,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
-pm
 ```
 
-## Paule-Mandel with Hartung-Knapp 
+##Paul-Mandel with HKSJ modification 
 ```{r PMHK, fig.height=4, fig.width=7}
 pmhk <- rma(yi, vi, data=dat.atelectasis, method="PM", test="knha") 
 forest(pmhk,
@@ -71,7 +67,7 @@ forest(pmhk,
 ```
 
 
-## Sensitivity analysis: Paule-Mandel with/without Hartung-Knapp (OR) 
+## Sensitivity analysis: Odds ratios (Paule-Mandel with HKSJ modification)
 ```{r OR}
 dat.atelectasis.OR <- escalc(measure="OR",
               ai=c(3, 2, 1, 1, 0),
@@ -86,20 +82,10 @@ dat.atelectasis.OR <- escalc(measure="OR",
               )
 ```
 
-
-```{r "PM - OR", fig.height=4, fig.width=7}
-pm.OR <- rma(yi, vi, data=dat.atelectasis.OR, method="PM") 
-forest(pm.OR,
-       atransf=exp,
-       at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
-pm.OR
-```
-
 ```{r "PMHK - OR", fig.height=4, fig.width=7}
 
 pmhk.OR <- rma(yi, vi, data=dat.atelectasis.OR, method="PM", test="knha") 
 forest(pmhk.OR,
        atransf=exp,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
-pmhk
 ```
