@@ -78,3 +78,13 @@ forest.default(x=leave1$estimate, ci.lb=leave1$ci.lb, ci.ub=leave1$ci.ub,
               )
 lines(x=log(c(1, 1)), y=c(0, 6))
 ```
+
+## Subgroup analysis
+### Tidal volume (>6 vs <=6mL/kg)
+
+
+### PEEP (<0 vs 0)
+
+
+
+### Anesthesia type (TIVA vs inhaled)

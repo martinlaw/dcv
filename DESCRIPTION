@@ -15,4 +15,5 @@ Suggests:
 VignetteBuilder: knitr
 URL: https://martinlaw.github.io/dcv/
 Imports: 
-    metafor
+    metafor,
+    readxl
