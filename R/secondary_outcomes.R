@@ -1,5 +1,4 @@
-library(librarian)
-shelf(readxl, metafor)
+library(readxl, metafor)
 # vignette("metafor")
 
 ### To do:
