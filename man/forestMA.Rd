@@ -9,6 +9,9 @@ forestMA(outc, time1)
 \arguments{
 \item{time1}{}
 }
+\value{
+Meta-analysis model, default arguments (i.e. REML)
+}
 \description{
 forestMA
 }

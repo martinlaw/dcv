@@ -50,7 +50,7 @@ re <- rma(yi, vi, data=dat.atelectasis, method="REML")
 ```
 
 
-## Paul-Mandel without1Hartung-Knapp-Sidik-Jonkman (HKSJ) modification 
+## Paul-Mandel without Hartung-Knapp-Sidik-Jonkman (HKSJ) modification 
 ```{r PM, fig.height=4, fig.width=7}
 pm <- rma(yi, vi, data=dat.atelectasis, method="PM") 
 forest(pm,
@@ -89,3 +89,5 @@ forest(pmhk.OR,
        atransf=exp,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
 ```
+
+

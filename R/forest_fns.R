@@ -1,7 +1,7 @@
 
 #' forestMA
 #'
-#' @param outc
+#' @param outc outcome1 -- either TLV or O
 #' @param time1
 #'
 #' @return Meta-analysis model, default arguments (i.e. REML)

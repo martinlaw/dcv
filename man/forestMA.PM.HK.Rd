@@ -9,6 +9,9 @@ forestMA.PM.HK(outc, time1)
 \arguments{
 \item{time1}{}
 }
+\value{
+Meta-analysis model with Paule-Mandel estimator and HKSJ modification
+}
 \description{
 forestMA.PM.HK
 }

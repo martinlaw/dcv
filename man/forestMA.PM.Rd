@@ -9,6 +9,9 @@ forestMA.PM(outc, time1)
 \arguments{
 \item{time1}{}
 }
+\value{
+Meta-analysis model with Paule-Mandel estimator
+}
 \description{
 forestMA.PM
 }
