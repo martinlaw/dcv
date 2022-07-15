@@ -4,7 +4,7 @@
 #' @param outc
 #' @param time1
 #'
-#' @return
+#' @return Meta-analysis model, default arguments (i.e. REML)
 #' @export
 #'
 #' @examples
@@ -19,7 +19,7 @@ forestMA <- function(outc, time1){
 #' @param outc
 #' @param time1
 #'
-#' @return
+#' @return Meta-analysis model with Paule-Mandel estimator
 #' @export
 #'
 #' @examples
@@ -35,7 +35,7 @@ forestMA.PM <- function(outc, time1){
 #' @param outc
 #' @param time1
 #'
-#' @return
+#' @return Meta-analysis model with Paule-Mandel estimator and HKSJ modification
 #' @export
 #'
 #' @examples
