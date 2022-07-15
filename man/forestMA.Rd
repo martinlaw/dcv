@@ -7,7 +7,9 @@
 forestMA(outc, time1)
 }
 \arguments{
-\item{time1}{}
+\item{outc}{secondary outcome}
+
+\item{time1}{time1 -- either TLV or OLV}
 }
 \value{
 Meta-analysis model, default arguments (i.e. REML)
