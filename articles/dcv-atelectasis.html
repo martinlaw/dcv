@@ -8,8 +8,8 @@
 <meta name="description" content="dcv">
 <title>Meta-Analysis on Postoperative Atelectasis • dcv</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Meta-Analysis on Postoperative Atelectasis">
 <meta property="og:description" content="dcv">
@@ -44,6 +44,7 @@
     <a class="dropdown-item" href="../articles/dcv-atelectasis.html">Meta-Analysis on Postoperative Atelectasis</a>
     <a class="dropdown-item" href="../articles/dcv-pneumonia.html">Meta-Analysis on Postoperative Pneumonia</a>
     <a class="dropdown-item" href="../articles/index.html">Home</a>
+    <a class="dropdown-item" href="../articles/sens-leave-one-out.html">Sensitivity analysis: leave one out</a>
   </div>
 </li>
       </ul>
@@ -98,71 +99,21 @@
 <span>       atransf<span class="op">=</span><span class="va">exp</span>,</span>
 <span>       at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dcv-atelectasis_files/figure-html/FE-1.png" width="672"></p>
-</div>
-<div class="section level2">
-<h2 id="standard-re-model-without-hartung-knapp">Standard RE model without Hartung-Knapp<a class="anchor" aria-label="anchor" href="#standard-re-model-without-hartung-knapp"></a>
-</h2>
+<p>Note: The standard RE model without Hartung-Knapp-Sidik-Jonkman (HKSJ) modification is identical:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">re</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat.atelectasis</span>, method<span class="op">=</span><span class="st">"REML"</span><span class="op">)</span> </span>
-<span><span class="fu"><a href="https://wviechtb.github.io/metafor/reference/forest.html" class="external-link">forest</a></span><span class="op">(</span><span class="va">re</span>,</span>
-<span>       atransf<span class="op">=</span><span class="va">exp</span>,</span>
-<span>       at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="dcv-atelectasis_files/figure-html/RE-1.png" width="672"></p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">re</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Random-Effects Model (k = 5; tau^2 estimator: REML)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; tau^2 (estimated amount of total heterogeneity): 0 (SE = 0.6048)</span></span>
-<span><span class="co">#&gt; tau (square root of estimated tau^2 value):      0</span></span>
-<span><span class="co">#&gt; I^2 (total heterogeneity / total variability):   0.00%</span></span>
-<span><span class="co">#&gt; H^2 (total variability / sampling variability):  1.00</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Test for Heterogeneity:</span></span>
-<span><span class="co">#&gt; Q(df = 4) = 1.1940, p-val = 0.8791</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Model Results:</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; estimate      se     zval    pval    ci.lb   ci.ub   ​ </span></span>
-<span><span class="co">#&gt;  -0.7766  0.4205  -1.8471  0.0647  -1.6007  0.0475  . </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ---</span></span>
-<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">re</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat.atelectasis</span>, method<span class="op">=</span><span class="st">"REML"</span><span class="op">)</span> </span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="paul-mandel-without-hartung-knapp">Paul-Mandel without Hartung-Knapp<a class="anchor" aria-label="anchor" href="#paul-mandel-without-hartung-knapp"></a>
+<h2 id="paul-mandel-without-hartung-knapp-sidik-jonkman-hksj-modification">Paul-Mandel without Hartung-Knapp-Sidik-Jonkman (HKSJ) modification<a class="anchor" aria-label="anchor" href="#paul-mandel-without-hartung-knapp-sidik-jonkman-hksj-modification"></a>
 </h2>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat.atelectasis</span>, method<span class="op">=</span><span class="st">"PM"</span><span class="op">)</span> </span>
 <span><span class="fu"><a href="https://wviechtb.github.io/metafor/reference/forest.html" class="external-link">forest</a></span><span class="op">(</span><span class="va">pm</span>,</span>
 <span>       atransf<span class="op">=</span><span class="va">exp</span>,</span>
 <span>       at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dcv-atelectasis_files/figure-html/PM-1.png" width="672"></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pm</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Random-Effects Model (k = 5; tau^2 estimator: PM)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; tau^2 (estimated amount of total heterogeneity): 0 (SE = 0.6250)</span></span>
-<span><span class="co">#&gt; tau (square root of estimated tau^2 value):      0</span></span>
-<span><span class="co">#&gt; I^2 (total heterogeneity / total variability):   0.00%</span></span>
-<span><span class="co">#&gt; H^2 (total variability / sampling variability):  1.00</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Test for Heterogeneity:</span></span>
-<span><span class="co">#&gt; Q(df = 4) = 1.1940, p-val = 0.8791</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Model Results:</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; estimate      se     zval    pval    ci.lb   ci.ub   ​ </span></span>
-<span><span class="co">#&gt;  -0.7766  0.4205  -1.8471  0.0647  -1.6007  0.0475  . </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ---</span></span>
-<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="paule-mandel-with-hartung-knapp">Paule-Mandel with Hartung-Knapp<a class="anchor" aria-label="anchor" href="#paule-mandel-with-hartung-knapp"></a>
-</h2>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<p>##Paul-Mandel with HKSJ modification</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pmhk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat.atelectasis</span>, method<span class="op">=</span><span class="st">"PM"</span>, test<span class="op">=</span><span class="st">"knha"</span><span class="op">)</span> </span>
 <span><span class="fu"><a href="https://wviechtb.github.io/metafor/reference/forest.html" class="external-link">forest</a></span><span class="op">(</span><span class="va">pmhk</span>,</span>
 <span>       atransf<span class="op">=</span><span class="va">exp</span>,</span>
@@ -170,9 +121,9 @@
 <p><img src="dcv-atelectasis_files/figure-html/PMHK-1.png" width="672"></p>
 </div>
 <div class="section level2">
-<h2 id="sensitivity-analysis-paule-mandel-withwithout-hartung-knapp-or">Sensitivity analysis: Paule-Mandel with/without Hartung-Knapp (OR)<a class="anchor" aria-label="anchor" href="#sensitivity-analysis-paule-mandel-withwithout-hartung-knapp-or"></a>
+<h2 id="sensitivity-analysis-odds-ratios-paule-mandel-with-hksj-modification">Sensitivity analysis: Odds ratios (Paule-Mandel with HKSJ modification)<a class="anchor" aria-label="anchor" href="#sensitivity-analysis-odds-ratios-paule-mandel-with-hksj-modification"></a>
 </h2>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat.atelectasis.OR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/escalc.html" class="external-link">escalc</a></span><span class="op">(</span>measure<span class="op">=</span><span class="st">"OR"</span>,</span>
 <span>              ai<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,</span>
 <span>              bi<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">33</span>, <span class="fl">43</span>, <span class="fl">44</span>, <span class="fl">15</span><span class="op">)</span>,</span>
@@ -184,59 +135,13 @@
 <span>                     <span class="st">"Li et al (OLA), 2020"</span>,</span>
 <span>                     <span class="st">"Ammar et al, 2021"</span><span class="op">)</span></span>
 <span>              <span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pm.OR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat.atelectasis.OR</span>, method<span class="op">=</span><span class="st">"PM"</span><span class="op">)</span> </span>
-<span><span class="fu"><a href="https://wviechtb.github.io/metafor/reference/forest.html" class="external-link">forest</a></span><span class="op">(</span><span class="va">pm.OR</span>,</span>
-<span>       atransf<span class="op">=</span><span class="va">exp</span>,</span>
-<span>       at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="dcv-atelectasis_files/figure-html/PM%20-%20OR-1.png" width="672"></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pm.OR</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Random-Effects Model (k = 5; tau^2 estimator: PM)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; tau^2 (estimated amount of total heterogeneity): 0 (SE = 0.7794)</span></span>
-<span><span class="co">#&gt; tau (square root of estimated tau^2 value):      0</span></span>
-<span><span class="co">#&gt; I^2 (total heterogeneity / total variability):   0.00%</span></span>
-<span><span class="co">#&gt; H^2 (total variability / sampling variability):  1.00</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Test for Heterogeneity:</span></span>
-<span><span class="co">#&gt; Q(df = 4) = 1.0030, p-val = 0.9093</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Model Results:</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; estimate      se     zval    pval    ci.lb   ci.ub   ​ </span></span>
-<span><span class="co">#&gt;  -0.9086  0.4695  -1.9351  0.0530  -1.8288  0.0117  . </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ---</span></span>
-<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">pmhk.OR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat.atelectasis.OR</span>, method<span class="op">=</span><span class="st">"PM"</span>, test<span class="op">=</span><span class="st">"knha"</span><span class="op">)</span> </span>
 <span><span class="fu"><a href="https://wviechtb.github.io/metafor/reference/forest.html" class="external-link">forest</a></span><span class="op">(</span><span class="va">pmhk.OR</span>,</span>
 <span>       atransf<span class="op">=</span><span class="va">exp</span>,</span>
 <span>       at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dcv-atelectasis_files/figure-html/PMHK%20-%20OR-1.png" width="672"></p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pmhk</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Random-Effects Model (k = 5; tau^2 estimator: PM)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; tau^2 (estimated amount of total heterogeneity): 0 (SE = 0.6250)</span></span>
-<span><span class="co">#&gt; tau (square root of estimated tau^2 value):      0</span></span>
-<span><span class="co">#&gt; I^2 (total heterogeneity / total variability):   0.00%</span></span>
-<span><span class="co">#&gt; H^2 (total variability / sampling variability):  1.00</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Test for Heterogeneity:</span></span>
-<span><span class="co">#&gt; Q(df = 4) = 1.1940, p-val = 0.8791</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Model Results:</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; estimate      se     tval  df    pval    ci.lb    ci.ub   ​ </span></span>
-<span><span class="co">#&gt;  -0.7766  0.2297  -3.3808   4  0.0278  -1.4144  -0.1388  * </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ---</span></span>
-<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -251,7 +156,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>
