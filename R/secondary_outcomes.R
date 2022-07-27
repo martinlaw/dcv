@@ -1,26 +1,11 @@
 library(readxl, metafor)
 # vignette("metafor")
 
-### To do:
-# Check R code on P9-10
-# Check results text: primary outcomes
-# Check results text: primary outcomes subgroups
-# Check results text: primary outcomes sensitivity analysis
-# Check results text: secondary outcomes
-# Check results figures: primary outcomes
-# Check results figures: primary outcomes subgroups
-# Check results figures: primary outcomes sensitivity analysis
-# Check primary outcome data in this paper vs original papers
-# Check data in diagrams: primary
-# Check data in diagrams: secondary
-# Check funnel plots
 
-### Completed:
-# Check results figures: secondary outcomes
 
 #### Load data ####
 
-initial.data <- read_xlsx(path="secondary_outcomes-2.xlsx", range="A1:M48", col_names=TRUE)
+initial.data <- read_xlsx(path="data/secondary_outcomes-2.xlsx", range="A1:M48", col_names=TRUE)
 dat <- escalc(measure="MD", data=initial.data, m1i=m1i, sd1i=sd1i, n1i=n1i, m2i=m2i, sd2i=sd2i, n2i=n2i, slab=study)
 
 
