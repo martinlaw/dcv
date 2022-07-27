@@ -1,4 +1,5 @@
-library(readxl, metafor)
+library(readxl)
+library(metafor)
 # vignette("metafor")
 
 
