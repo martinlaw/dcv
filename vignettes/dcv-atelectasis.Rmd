@@ -22,9 +22,9 @@ library(metafor)
 ## Input data
 ```{r atelectasis}
 dat.atelectasis <- escalc(measure="RR",
-              ai=c(3, 2, 1, 1, 0),
+              ai=c( 3,  2,  1,  1,  0),
               bi=c(15, 33, 43, 44, 15),
-              ci=c(4, 6, 4, 2, 1),
+              ci=c( 4,  6,  4,  2,  1),
               di=c(15, 29, 38, 43, 14),
               slab=c("Boules et al, 2011",
                      "Mahmoud et al, 2017",
@@ -35,7 +35,17 @@ dat.atelectasis <- escalc(measure="RR",
 ```
 
 
-## FE model
+## Primary analysis: Paul-Mandel without Hartung-Knapp-Sidik-Jonkman (HKSJ) modification 
+```{r PM, fig.height=4, fig.width=7}
+pm <- rma(yi, vi, data=dat.atelectasis, method="PM") 
+forest(pm,
+       atransf=exp,
+       at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
+```
+These results agree with the paper (Fig 2, bottom).
+
+## Sensitivity analysis
+### Sensitivity analysis 1: FE model
 
 ```{r FE, fig.height=4, fig.width=7}
 fe <- rma(yi, vi, data=dat.atelectasis, method="FE") 
@@ -44,21 +54,14 @@ forest(fe,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
 ```
 
-Note: The standard RE model without Hartung-Knapp-Sidik-Jonkman (HKSJ) modification is identical:
+Note: The standard RE model without HKSJ modification is identical (not shown):
 ```{r RE, fig.height=4, fig.width=7}
 re <- rma(yi, vi, data=dat.atelectasis, method="REML") 
 ```
 
 
-## Paul-Mandel without Hartung-Knapp-Sidik-Jonkman (HKSJ) modification 
-```{r PM, fig.height=4, fig.width=7}
-pm <- rma(yi, vi, data=dat.atelectasis, method="PM") 
-forest(pm,
-       atransf=exp,
-       at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
-```
 
-##Paul-Mandel with HKSJ modification 
+### Sensitivity analysis 2: Paule-Mandel with HKSJ modification 
 ```{r PMHK, fig.height=4, fig.width=7}
 pmhk <- rma(yi, vi, data=dat.atelectasis, method="PM", test="knha") 
 forest(pmhk,
@@ -67,7 +70,7 @@ forest(pmhk,
 ```
 
 
-## Sensitivity analysis: Odds ratios (Paule-Mandel with HKSJ modification)
+### Sensitivity analysis 3: Odds ratios (Paule-Mandel without HKSJ modification)
 ```{r OR}
 dat.atelectasis.OR <- escalc(measure="OR",
               ai=c(3, 2, 1, 1, 0),
@@ -82,12 +85,28 @@ dat.atelectasis.OR <- escalc(measure="OR",
               )
 ```
 
-```{r "PMHK - OR", fig.height=4, fig.width=7}
+```{r "PM - OR", fig.height=4, fig.width=7}
 
-pmhk.OR <- rma(yi, vi, data=dat.atelectasis.OR, method="PM", test="knha") 
-forest(pmhk.OR,
+pm.OR <- rma(yi, vi, data=dat.atelectasis.OR, method="PM") 
+forest(pm.OR,
        atransf=exp,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
 ```
 
+Results are similar to primary analysis results.
 
+
+
+### Sensitivity analysis 4: leave-one-out analysis
+### Atelectasis
+```{r leave one out atel, fig.height=4, fig.width=7}
+leave1.atel <- leave1out(pm)
+forest.default(x=leave1.atel$estimate, ci.lb=leave1.atel$ci.lb, ci.ub=leave1.atel$ci.ub,
+               slab=paste("Omitting ", leave1.atel$slab, sep=""),atransf=exp,
+               at=log(c(0.15, 0.25, exp(pm$b), 1, 4)), xlim=log(c(0.01, 4.5)),
+               refline=pm$b
+              )
+lines(x=log(c(1, 1)), y=c(0, 6))
+```
+
+Results are almost identical to results in paper (difference of 0.01 in the upper confidence interval for Mahmoud et al.).

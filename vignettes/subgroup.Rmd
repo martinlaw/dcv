@@ -1,0 +1,37 @@
+---
+title: 'Sensitivity analysis: leave one out'
+author: "Martin Law"
+date: '2022-07-15'
+output: html_document
+---
+---
+title: "Sensitivity analysis"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r library, results="hide", message=FALSE}
+library(metafor)
+```
+
+
+## Subgroup analysis
+Data unclear:
+
+* Multiple/range of values given for tidal volume
+* No PEEP values greater than zero (dichotomisation is at zero)
+* Li et al. results are split in two in the primary outcome, but not clear if tidal volume etc. are the same in both sets of results.
+
+### Tidal volume (>6 vs <=6mL/kg)
+### PEEP (<0 vs 0)
+### Anesthesia type (TIVA vs inhaled)

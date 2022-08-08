@@ -17,13 +17,19 @@
 
 #### List of analyses: ####
 #
+#
+# DONE:::
+#
 # Primary analysis of primary outcomes:
 #   pneumonia
 #   atelectasis
 #
 # Sensitivity analysis (1): "Leave one out" (pneumonia, atelectasis)
-# Sensitivity analysis (2): Use/do not use Hartung-Knapp-Sidik-Jonkmann modification (pneumonia, atelectasis)
+# Sensitivity analysis (2): Use Hartung-Knapp-Sidik-Jonkmann modification (pneumonia, atelectasis)
 # Sensitivity analysis (3): Odds ratios (pneumonia, atelectasis)
+#
+#
+# NOT DONE:
 #
 # Subgroup analyses:
 #   Tidal volume (>6 vs <=6mL/kg)
