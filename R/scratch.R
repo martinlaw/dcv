@@ -89,3 +89,19 @@ fabric.df <- data.frame(digit=c(5,9,2,4,7,4,7,8,1,7,1,1,1,8,5,6,1,2,5,5,6,1,6,6,
 #                  peep=c(10, ),
 #                  anes=c("TIVA", )
 #                  )
+
+
+
+
+
+dat <- escalc(measure="RR",
+              ai=c(3,   5,  2,  0,  1),
+              bi=c(32, 39, 43, 15, 24),
+              ci=c(6,   7,  4,  1,  2),
+              di=c(29, 35, 41, 14, 23),
+              slab=c("Mahmoud et al, 2017",
+                     "Li et al (Standard), 2020",
+                     "Li et al (OLA), 2020",
+                     "Ammar et al, 2021",
+                     "Yao et al, 2020"))
+dat

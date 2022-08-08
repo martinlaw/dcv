@@ -22,9 +22,9 @@ library(metafor)
 ## Input data
 ```{r pneumonia }
 dat <- escalc(measure="RR",
-              ai=c(3, 5, 2, 0, 1),
+              ai=c(3,   5,  2,  0,  1),
               bi=c(32, 39, 43, 15, 24),
-              ci=c(6, 7, 4, 1, 2),
+              ci=c(6,   7,  4,  1,  2),
               di=c(29, 35, 41, 14, 23),
               slab=c("Mahmoud et al, 2017",
                      "Li et al (Standard), 2020",
@@ -33,8 +33,16 @@ dat <- escalc(measure="RR",
                      "Yao et al, 2020"))
 ```
 
+## Primary analysis: Paul-Mandel without Hartung-Knapp-Sidik-Jonkman (HKSJ) modification 
+```{r PM, fig.height=4, fig.width=7}
+pm <- rma(yi, vi, data=dat, method="PM") 
+forest(pm,
+       atransf=exp,
+       at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
+```
+These results agree with the paper (Fig 2, top).
 
-## FE model
+## Sensitivity analysis 1: FE model
 
 ```{r FE, fig.height=4, fig.width=7}
 fe <- rma(yi, vi, data=dat, method="FE") 
@@ -43,20 +51,14 @@ forest(fe,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
 ```
 
-Note: The standard RE model without Hartung-Knapp-Sidik-Jonkman (HKSJ) modification is identical:
+Note: The standard RE model without HKSJ modification is identical (not shown):
 ```{r RE, fig.height=4, fig.width=7}
 re <- rma(yi, vi, data=dat, method="REML") 
 ```
 
-## Paul-Mandel without Hartung-Knapp-Sidik-Jonkman (HKSJ) modification 
-```{r PM, fig.height=4, fig.width=7}
-pm <- rma(yi, vi, data=dat, method="PM") 
-forest(pm,
-       atransf=exp,
-       at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
-```
 
-## Paule-Mandel with HKSJ modification 
+
+## Sensitivity analysis 2: Paule-Mandel with HKSJ modification 
 ```{r PMHK, fig.height=4, fig.width=7}
 pmhk <- rma(yi, vi, data=dat, method="PM", test="knha") 
 forest(pmhk,
@@ -65,12 +67,12 @@ forest(pmhk,
 ```
 
 
-## Sensitivity analysis: Odds ratios (Paule-Mandel with HKSJ modification)
+## Sensitivity analysis 3: Odds ratios (Paule-Mandel without HKSJ modification)
 ```{r OR}
 dat.OR <- escalc(measure="OR",
-              ai=c(3, 5, 2, 0, 1),
+              ai=c(3,   5,  2,  0,  1),
               bi=c(32, 39, 43, 15, 24),
-              ci=c(6, 7, 4, 1, 2),
+              ci=c( 6,  7,  4,  1,  2),
               di=c(29, 35, 41, 14, 23),
               slab=c("Mahmoud et al, 2017",
                      "Li et al (Standard), 2020",
@@ -79,9 +81,10 @@ dat.OR <- escalc(measure="OR",
                      "Yao et al, 2020"))
 ```
 
+Results are similar:
 
 ```{r "PM - OR", fig.height=4, fig.width=7}
-pm.OR <- rma(yi, vi, data=dat.OR, method="PM", test="knha") 
+pm.OR <- rma(yi, vi, data=dat.OR, method="PM") 
 forest(pm.OR,
        atransf=exp,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
