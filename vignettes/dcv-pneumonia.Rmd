@@ -42,7 +42,8 @@ forest(pm,
 ```
 These results agree with the paper (Fig 2, top).
 
-## Sensitivity analysis 1: FE model
+## Sensitivity analysis
+### Sensitivity analysis 1: FE model
 
 ```{r FE, fig.height=4, fig.width=7}
 fe <- rma(yi, vi, data=dat, method="FE") 
@@ -58,7 +59,7 @@ re <- rma(yi, vi, data=dat, method="REML")
 
 
 
-## Sensitivity analysis 2: Paule-Mandel with HKSJ modification 
+### Sensitivity analysis 2: Paule-Mandel with HKSJ modification 
 ```{r PMHK, fig.height=4, fig.width=7}
 pmhk <- rma(yi, vi, data=dat, method="PM", test="knha") 
 forest(pmhk,
@@ -67,7 +68,7 @@ forest(pmhk,
 ```
 
 
-## Sensitivity analysis 3: Odds ratios (Paule-Mandel without HKSJ modification)
+### Sensitivity analysis 3: Odds ratios (Paule-Mandel without HKSJ modification)
 ```{r OR}
 dat.OR <- escalc(measure="OR",
               ai=c(3,   5,  2,  0,  1),
@@ -90,3 +91,15 @@ forest(pm.OR,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
 ```
 
+
+### Sensitivity analysis 4: leave-one-out analysis
+```{r leave one out pneu, fig.height=4, fig.width=7}
+leave1 <- leave1out(pm)
+forest.default(x=leave1$estimate, ci.lb=leave1$ci.lb, ci.ub=leave1$ci.ub,
+               slab=paste("Omitting ", leave1$slab, sep=""),atransf=exp,
+               at=log(c(0.15, 0.25, exp(pm$b),  1, 4)), xlim=log(c(0.01, 4.5)),
+               refline=pm$b
+              )
+lines(x=log(c(1, 1)), y=c(0, 6))
+```
+The results of the leave-one-out sensitivity analysis agree with the paper (page 20, bottom, different order)
