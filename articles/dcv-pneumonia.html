@@ -44,7 +44,7 @@
     <a class="dropdown-item" href="../articles/dcv-atelectasis.html">Meta-Analysis on Postoperative Atelectasis</a>
     <a class="dropdown-item" href="../articles/dcv-pneumonia.html">Meta-Analysis on Postoperative Pneumonia</a>
     <a class="dropdown-item" href="../articles/index.html">Home</a>
-    <a class="dropdown-item" href="../articles/sens-leave-one-out.html">Sensitivity analysis: leave one out</a>
+    <a class="dropdown-item" href="../articles/subgroup.html">Sensitivity analysis: leave one out</a>
   </div>
 </li>
       </ul>
@@ -79,9 +79,9 @@
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/escalc.html" class="external-link">escalc</a></span><span class="op">(</span>measure<span class="op">=</span><span class="st">"RR"</span>,</span>
-<span>              ai<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">2</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>              ai<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,   <span class="fl">5</span>,  <span class="fl">2</span>,  <span class="fl">0</span>,  <span class="fl">1</span><span class="op">)</span>,</span>
 <span>              bi<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">32</span>, <span class="fl">39</span>, <span class="fl">43</span>, <span class="fl">15</span>, <span class="fl">24</span><span class="op">)</span>,</span>
-<span>              ci<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>              ci<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6</span>,   <span class="fl">7</span>,  <span class="fl">4</span>,  <span class="fl">1</span>,  <span class="fl">2</span><span class="op">)</span>,</span>
 <span>              di<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">29</span>, <span class="fl">35</span>, <span class="fl">41</span>, <span class="fl">14</span>, <span class="fl">23</span><span class="op">)</span>,</span>
 <span>              slab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Mahmoud et al, 2017"</span>,</span>
 <span>                     <span class="st">"Li et al (Standard), 2020"</span>,</span>
@@ -90,31 +90,34 @@
 <span>                     <span class="st">"Yao et al, 2020"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="fe-model">FE model<a class="anchor" aria-label="anchor" href="#fe-model"></a>
+<h2 id="primary-analysis-paul-mandel-without-hartung-knapp-sidik-jonkman-hksj-modification">Primary analysis: Paul-Mandel without Hartung-Knapp-Sidik-Jonkman (HKSJ) modification<a class="anchor" aria-label="anchor" href="#primary-analysis-paul-mandel-without-hartung-knapp-sidik-jonkman-hksj-modification"></a>
 </h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat</span>, method<span class="op">=</span><span class="st">"PM"</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://wviechtb.github.io/metafor/reference/forest.html" class="external-link">forest</a></span><span class="op">(</span><span class="va">pm</span>,</span>
+<span>       atransf<span class="op">=</span><span class="va">exp</span>,</span>
+<span>       at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="dcv-pneumonia_files/figure-html/PM-1.png" width="672"> These results agree with the paper (Fig 2, top).</p>
+</div>
+<div class="section level2">
+<h2 id="sensitivity-analysis">Sensitivity analysis<a class="anchor" aria-label="anchor" href="#sensitivity-analysis"></a>
+</h2>
+<div class="section level3">
+<h3 id="sensitivity-analysis-1-fe-model">Sensitivity analysis 1: FE model<a class="anchor" aria-label="anchor" href="#sensitivity-analysis-1-fe-model"></a>
+</h3>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat</span>, method<span class="op">=</span><span class="st">"FE"</span><span class="op">)</span> </span>
 <span><span class="fu"><a href="https://wviechtb.github.io/metafor/reference/forest.html" class="external-link">forest</a></span><span class="op">(</span><span class="va">fe</span>, </span>
 <span>       atransf<span class="op">=</span><span class="va">exp</span>,</span>
 <span>       at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dcv-pneumonia_files/figure-html/FE-1.png" width="672"></p>
-<p>Note: The standard RE model without Hartung-Knapp-Sidik-Jonkman (HKSJ) modification is identical:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<p>Note: The standard RE model without HKSJ modification is identical (not shown):</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">re</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat</span>, method<span class="op">=</span><span class="st">"REML"</span><span class="op">)</span> </span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="paul-mandel-without-hartung-knapp-sidik-jonkman-hksj-modification">Paul-Mandel without Hartung-Knapp-Sidik-Jonkman (HKSJ) modification<a class="anchor" aria-label="anchor" href="#paul-mandel-without-hartung-knapp-sidik-jonkman-hksj-modification"></a>
-</h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat</span>, method<span class="op">=</span><span class="st">"PM"</span><span class="op">)</span> </span>
-<span><span class="fu"><a href="https://wviechtb.github.io/metafor/reference/forest.html" class="external-link">forest</a></span><span class="op">(</span><span class="va">pm</span>,</span>
-<span>       atransf<span class="op">=</span><span class="va">exp</span>,</span>
-<span>       at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="dcv-pneumonia_files/figure-html/PM-1.png" width="672"></p>
-</div>
-<div class="section level2">
-<h2 id="paule-mandel-with-hksj-modification">Paule-Mandel with HKSJ modification<a class="anchor" aria-label="anchor" href="#paule-mandel-with-hksj-modification"></a>
-</h2>
+<div class="section level3">
+<h3 id="sensitivity-analysis-2-paule-mandel-with-hksj-modification">Sensitivity analysis 2: Paule-Mandel with HKSJ modification<a class="anchor" aria-label="anchor" href="#sensitivity-analysis-2-paule-mandel-with-hksj-modification"></a>
+</h3>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pmhk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat</span>, method<span class="op">=</span><span class="st">"PM"</span>, test<span class="op">=</span><span class="st">"knha"</span><span class="op">)</span> </span>
 <span><span class="fu"><a href="https://wviechtb.github.io/metafor/reference/forest.html" class="external-link">forest</a></span><span class="op">(</span><span class="va">pmhk</span>,</span>
@@ -122,26 +125,41 @@
 <span>       at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dcv-pneumonia_files/figure-html/PMHK-1.png" width="672"></p>
 </div>
-<div class="section level2">
-<h2 id="sensitivity-analysis-odds-ratios-paule-mandel-with-hksj-modification">Sensitivity analysis: Odds ratios (Paule-Mandel with HKSJ modification)<a class="anchor" aria-label="anchor" href="#sensitivity-analysis-odds-ratios-paule-mandel-with-hksj-modification"></a>
-</h2>
+<div class="section level3">
+<h3 id="sensitivity-analysis-3-odds-ratios-paule-mandel-without-hksj-modification">Sensitivity analysis 3: Odds ratios (Paule-Mandel without HKSJ modification)<a class="anchor" aria-label="anchor" href="#sensitivity-analysis-3-odds-ratios-paule-mandel-without-hksj-modification"></a>
+</h3>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat.OR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/escalc.html" class="external-link">escalc</a></span><span class="op">(</span>measure<span class="op">=</span><span class="st">"OR"</span>,</span>
-<span>              ai<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">2</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>              ai<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,   <span class="fl">5</span>,  <span class="fl">2</span>,  <span class="fl">0</span>,  <span class="fl">1</span><span class="op">)</span>,</span>
 <span>              bi<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">32</span>, <span class="fl">39</span>, <span class="fl">43</span>, <span class="fl">15</span>, <span class="fl">24</span><span class="op">)</span>,</span>
-<span>              ci<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>              ci<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span> <span class="fl">6</span>,  <span class="fl">7</span>,  <span class="fl">4</span>,  <span class="fl">1</span>,  <span class="fl">2</span><span class="op">)</span>,</span>
 <span>              di<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">29</span>, <span class="fl">35</span>, <span class="fl">41</span>, <span class="fl">14</span>, <span class="fl">23</span><span class="op">)</span>,</span>
 <span>              slab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Mahmoud et al, 2017"</span>,</span>
 <span>                     <span class="st">"Li et al (Standard), 2020"</span>,</span>
 <span>                     <span class="st">"Li et al (OLA), 2020"</span>,</span>
 <span>                     <span class="st">"Ammar et al, 2021"</span>,</span>
 <span>                     <span class="st">"Yao et al, 2020"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Results are similar:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pm.OR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat.OR</span>, method<span class="op">=</span><span class="st">"PM"</span>, test<span class="op">=</span><span class="st">"knha"</span><span class="op">)</span> </span>
+<code class="sourceCode R"><span><span class="va">pm.OR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat.OR</span>, method<span class="op">=</span><span class="st">"PM"</span><span class="op">)</span> </span>
 <span><span class="fu"><a href="https://wviechtb.github.io/metafor/reference/forest.html" class="external-link">forest</a></span><span class="op">(</span><span class="va">pm.OR</span>,</span>
 <span>       atransf<span class="op">=</span><span class="va">exp</span>,</span>
 <span>       at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dcv-pneumonia_files/figure-html/PM%20-%20OR-1.png" width="672"></p>
+</div>
+<div class="section level3">
+<h3 id="sensitivity-analysis-4-leave-one-out-analysis">Sensitivity analysis 4: leave-one-out analysis<a class="anchor" aria-label="anchor" href="#sensitivity-analysis-4-leave-one-out-analysis"></a>
+</h3>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">leave1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/leave1out.html" class="external-link">leave1out</a></span><span class="op">(</span><span class="va">pm</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://wviechtb.github.io/metafor/reference/forest.default.html" class="external-link">forest.default</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">leave1</span><span class="op">$</span><span class="va">estimate</span>, ci.lb<span class="op">=</span><span class="va">leave1</span><span class="op">$</span><span class="va">ci.lb</span>, ci.ub<span class="op">=</span><span class="va">leave1</span><span class="op">$</span><span class="va">ci.ub</span>,</span>
+<span>               slab<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Omitting "</span>, <span class="va">leave1</span><span class="op">$</span><span class="va">slab</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span>,atransf<span class="op">=</span><span class="va">exp</span>,</span>
+<span>               at<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.15</span>, <span class="fl">0.25</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">pm</span><span class="op">$</span><span class="va">b</span><span class="op">)</span>,  <span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>, xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">4.5</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>               refline<span class="op">=</span><span class="va">pm</span><span class="op">$</span><span class="va">b</span></span>
+<span>              <span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>, y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="dcv-pneumonia_files/figure-html/leave%20one%20out%20pneu-1.png" width="672"> The results of the leave-one-out sensitivity analysis agree with the paper (page 20, bottom, different order)</p>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
