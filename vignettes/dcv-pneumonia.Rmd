@@ -103,3 +103,10 @@ forest.default(x=leave1$estimate, ci.lb=leave1$ci.lb, ci.ub=leave1$ci.ub,
 lines(x=log(c(1, 1)), y=c(0, 6))
 ```
 The results of the leave-one-out sensitivity analysis agree with the paper (page 20, bottom, different order)
+
+
+### Funnel plot
+```{r funnel, fig.height=4, fig.width=6}
+funnel(pm, main="Standard Error")
+regtest(pm)
+```

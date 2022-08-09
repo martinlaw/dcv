@@ -110,3 +110,10 @@ lines(x=log(c(1, 1)), y=c(0, 6))
 ```
 
 Results are almost identical to results in paper (difference of 0.01 in the upper confidence interval for Mahmoud et al.).
+
+### Funnel plot
+```{r funnel, fig.height=4, fig.width=6}
+funnel(pm, main="Standard Error")
+regtest(pm)
+```
+
