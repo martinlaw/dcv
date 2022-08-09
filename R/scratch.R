@@ -1,4 +1,4 @@
-# library(metafor)
+ library(metafor)
 # ?escalc
 # dat.resp <- escalc(measure="MD",
 #               m1i=c(31.74, 29.8, 27.7, 23, 38.6, 23.6),
