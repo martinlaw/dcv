@@ -1,7 +1,8 @@
 .Rproj.user
 docs
 inst/doc
-scratch.R
 meta.Rmd
 .Rhistory
-R/scratch.R
+*scratch.R
+*overview.R
+*forest_fns.R
