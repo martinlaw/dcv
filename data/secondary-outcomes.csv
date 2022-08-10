@@ -1,0 +1,48 @@
+"","study","year","outcome1","time","m1i","sd1i","n1i","m2i","sd2i","n2i","anesthesia","peep","tidal"
+"1","Mahmoud et al",2017,"pO2","OLV",141,46,35,117,43,35,"tiva","yes","yes"
+"2","Xukai et al",2014,"pO2","OLV",187,85,15,179,68,15,NA,NA,"no"
+"3","Boules et al",2011,"pO2","OLV",216.45,22.27,18,142.35,22.25,19,"inhaled","no","yes"
+"4","Ammar et al",2021,"pO2","OLV",190.5,4.16,15,187.5,5.64,15,"inhaled","no","yes"
+"5","Sahutoglu et al",2018,"pO2","OLV",113.5,42.66,40,138,61.2,40,"tiva","yes","yes"
+"6","Lin et al",2015,"pO2","OLV",208,46,21,161,56,22,"tiva",NA,"no"
+"7","Pu et al",2014,"pO2","OLV",223.9,23.7,10,170.6,20.8,10,"tiva",NA,"no"
+"8","Song et al",2014,"pO2","OLV",375.8,145.1,16,328.1,123.7,13,"tiva","no","no"
+"9","Yao et al",2020,"pO2","OLV",169.38,25.93,25,162.64,21.09,25,NA,"yes","yes"
+"10","Mahmoud et al",2017,"pO2","TLV",266,84,35,236,80,35,"tiva","yes","yes"
+"11","Xukai et al",2014,"pO2","TLV",402,95,15,398,82,15,NA,NA,"no"
+"12","Boules et al",2011,"pO2","TLV",396.95,24.16,18,370.85,35.22,19,"inhaled","no","yes"
+"13","Ammar et al",2021,"pO2","TLV",399.1,9.53,15,392.3,11.2,15,"inhaled","no","yes"
+"14","Sahutoglu et al",2018,"pO2","TLV",253.25,93.44,40,204,66.78,40,"tiva","yes","yes"
+"15","Lin et al",2015,"pO2","TLV",320,71,21,318,69,22,"tiva",NA,"no"
+"16","Mahmoud et al",2017,"Peak","TLV",17.1,4.1,35,22.9,4.4,35,"tiva","yes","yes"
+"17","Li et al (OLA)",2020,"Peak","TLV",20.22,2.39,45,21.84,2.49,45,"inhaled",NA,"yes"
+"18","Li et al (Standard)",2020,"Peak","TLV",18.82,2.95,44,18.69,4.69,42,"inhaled",NA,"yes"
+"19","Xukai et al ",2014,"Peak","TLV",13.7,2.3,15,15.7,3,15,NA,NA,"no"
+"20","Boules et al",2011,"Peak","TLV",15.3,1.31,18,19.75,2.73,19,"inhaled","no","yes"
+"21","Sahutoglu et al",2018,"Peak","TLV",21.25,4.87,40,25.5,6.03,40,"tiva","yes","yes"
+"22","Lin et al",2015,"Peak","TLV",18.1,5.4,21,20.4,3.8,22,"tiva",NA,"no"
+"23","Pu et al",2014,"Peak","OLV",24.4,2.2,10,28.7,3.8,10,"tiva",NA,"no"
+"24","Mahmoud et al",2017,"Peak","OLV",21.8,3.9,35,29.9,5.2,35,"tiva","yes","yes"
+"25","Li et al (OLA)",2020,"Peak","OLV",21,1.53,45,24,1.53,45,"inhaled",NA,"yes"
+"26","Li et al (Standard)",2020,"Peak","OLV",21.41,2.87,44,23,3.07,42,"inhaled",NA,"yes"
+"27","Xukai et al ",2014,"Peak","OLV",18.1,2.3,15,22.8,3.2,15,NA,NA,"no"
+"28","Boules et al",2011,"Peak","OLV",17.65,1.98,18,22.4,2.48,19,"inhaled","no","yes"
+"29","Sahutoglu et al",2018,"Peak","OLV",21,5,40,27,6,40,"tiva","yes","yes"
+"30","Lin et al",2015,"Peak","OLV",21.5,4.3,21,28.2,6.6,22,"tiva",NA,"no"
+"31","Song et al",2014,"Peak","OLV",19.6,2.5,16,23.2,3.1,13,"tiva","no","no"
+"32","Yao et al",2020,"Peak","OLV",19.72,2.64,25,22.36,2.56,25,NA,"yes","yes"
+"33","Yao et al",2020,"Cdyn","OLV",31.74,2.71,25,27,2.43,25,NA,NA,NA
+"34","Ammar et al",2021,"Cdyn","OLV",29.8,4.57,15,20.53,2.61,15,NA,NA,NA
+"35","Li et al (OLA)",2020,"Cdyn","OLV",27.7,6.13,45,26.3,6.13,45,NA,NA,NA
+"36","Li et al (Standard)",2020,"Cdyn","OLV",23,3.06,44,19.9,1.73,42,NA,NA,NA
+"37","Xukai et al",2014,"Cdyn","OLV",38.6,6.2,15,29.6,3.2,15,NA,NA,NA
+"38","Sahutoglu et al",2018,"Cdyn","OLV",23.6,5.8,40,17.3,4.6,40,NA,NA,NA
+"39","Pu et al",2014,"Plat","OLV",23,4.1,10,25.3,3,10,"tiva",NA,"no"
+"40","Boules et al",2011,"Plat","OLV",14.12,2.41,18,17.24,3.61,19,"inhaled","no","yes"
+"41","Mahmoud et al",2017,"Plat","OLV",17,3.5,35,26.1,4.1,35,"tiva","yes","yes"
+"42","Lin et al (1)",2015,"Plat","OLV",21.7,4.1,21,22.3,4.4,22,"tiva",NA,"no"
+"43","Sahutoglu et al",2018,"Plat","OLV",21.25,4.4,40,23.25,6.72,40,"tiva","yes","yes"
+"44","Boules et al",2011,"Plat","TLV",11.4,3.28,18,15.41,1.36,19,"inhaled","no",NA
+"45","Mahmoud et al",2017,"Plat","TLV",12.2,3.7,35,19.1,3.5,35,"tiva",NA,NA
+"46","Lin et al",2015,"Plat","TLV",16.9,4,21,16.7,3.8,22,"tiva",NA,NA
+"47","Sahutoglu et al",2018,"Plat","TLV",21.25,4.87,40,21,5.1,40,"tiva",NA,NA
