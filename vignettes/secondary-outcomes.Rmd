@@ -20,8 +20,7 @@ library(metafor)
 
 
 ## Load data
-```{r load, eval=TRUE}
-#initial.data <- read.csv(file="data/secondary-outcomes.csv")
+```{r load, echo=FALSE}
 initial.data <- structure(list(study = c("Mahmoud et al", "Xukai et al", "Boules et al", 
 "Ammar et al", "Sahutoglu et al", "Lin et al", "Pu et al", "Song et al", 
 "Yao et al", "Mahmoud et al", "Xukai et al", "Boules et al", 
@@ -92,13 +91,16 @@ initial.data <- structure(list(study = c("Mahmoud et al", "Xukai et al", "Boules
     NA, NA, NA, "no", "yes", "yes", "no", "yes", NA, NA, NA, 
     NA)), class = c("tbl_df", "tbl", "data.frame"), row.names = c(NA, 
 -47L))
-#dat <- escalc(measure="MD", data=initial.data, m1i=m1i, sd1i=sd1i, n1i=n1i, m2i=m2i, sd2i=sd2i, n2i=n2i, slab=study)
-#
+```
+
+```{r show data}
+print(initial.data)
+dat <- escalc(measure="MD", data=initial.data, m1i=m1i, sd1i=sd1i, n1i=n1i, m2i=m2i, sd2i=sd2i, n2i=n2i, slab=study)
 ```
 
 
 ## Fig 2: Respiratory compliance (Cdyn)
-```{r Cdyn, fig.height=5, fig.width=7, eval=FALSE}
+```{r Cdyn, fig.height=5, fig.width=7}
 mod <- rma(yi, vi, data=dat, subset = (outcome1=="Cdyn" & time=="OLV"), method="PM")
 forest(mod, header="Cdyn (OLV)", cex=1.5)
 ```
@@ -106,7 +108,7 @@ forest(mod, header="Cdyn (OLV)", cex=1.5)
 Evidence of an effect.
 
 ## Fig 3: Plateau pressure (Plat)
-```{r plateau, fig.height=5, fig.width=7, eval=FALSE}
+```{r plateau, fig.height=5, fig.width=7}
 mod <- rma(yi, vi, data=dat, subset = (outcome1=="Plat" & time=="TLV"), method="PM")
 forest(mod, header="Plateau (TLV)", cex=1.5)
 mod <- rma(yi, vi, data=dat, subset = (outcome1=="Plat" & time=="OLV"), method="PM")
@@ -117,7 +119,7 @@ Figure 3 in paper has different headings compared to Figs 4 and 5.
 Evidence of effect for OLV only (and not when using HKSJ).
 
 ## Fig 4: Peak inspiratory pressure (Peak)
-```{r peak, fig.height=6, fig.width=7, eval=FALSE}
+```{r peak, fig.height=6, fig.width=7}
 mod <- rma(yi, vi, data=dat, subset = (outcome1=="Peak" & time=="TLV"), method="PM")
 forest(mod, header="Peak (TLV)", cex=1.5)
 mod <- rma(yi, vi, data=dat, subset = (outcome1=="Peak" & time=="OLV"), method="PM")
@@ -127,7 +129,7 @@ Fig 4 has TLV first, while Figs 3 and 5 have OLV first.
 Evidence of effect for both TLV and OLV (even with HKSJ).
 
 ## Fig 5: Arterial oxygen pressure (pO2)
-```{r arterial, fig.height=6, fig.width=7, eval=FALSE}
+```{r arterial, fig.height=6, fig.width=7}
 mod <- rma(yi, vi, data=dat, subset = (outcome1=="pO2" & time=="TLV"), method="PM")
 forest(mod, header="pO2 (TLV)", cex=1.5)
 # mod <- rma(yi, vi, data=dat, subset = (outcome1=="pO2" & time=="OLV"), method="PM")
