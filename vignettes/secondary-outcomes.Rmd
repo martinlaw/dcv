@@ -29,7 +29,7 @@ dat <- escalc(measure="MD", data=initial.data, m1i=m1i, sd1i=sd1i, n1i=n1i, m2i=
 
 
 ## Fig 2: Respiratory compliance (Cdyn)
-```{r, Cdyn, fig.height=5, fig.width=7}
+```{r, Cdyn, fig.height=5, fig.width=7, eval=FALSE}
 mod <- rma(yi, vi, data=dat, subset = (outcome1=="Cdyn" & time=="OLV"), method="PM")
 forest(mod, header="Cdyn (OLV)", cex=1.5)
 ```
@@ -37,7 +37,7 @@ forest(mod, header="Cdyn (OLV)", cex=1.5)
 Evidence of an effect.
 
 ## Fig 3: Plateau pressure (Plat)
-```{r, plateau, fig.height=5, fig.width=7}
+```{r, plateau, fig.height=5, fig.width=7, eval=FALSE}
 mod <- rma(yi, vi, data=dat, subset = (outcome1=="Plat" & time=="TLV"), method="PM")
 forest(mod, header="Plateau (TLV)", cex=1.5)
 mod <- rma(yi, vi, data=dat, subset = (outcome1=="Plat" & time=="OLV"), method="PM")
@@ -48,7 +48,7 @@ Figure 3 in paper has different headings compared to Figs 4 and 5.
 Evidence of effect for OLV only (and not when using HKSJ).
 
 ## Fig 4: Peak inspiratory pressure (Peak)
-```{r, peak, fig.height=6, fig.width=7}
+```{r, peak, fig.height=6, fig.width=7, eval=FALSE}
 mod <- rma(yi, vi, data=dat, subset = (outcome1=="Peak" & time=="TLV"), method="PM")
 forest(mod, header="Peak (TLV)", cex=1.5)
 mod <- rma(yi, vi, data=dat, subset = (outcome1=="Peak" & time=="OLV"), method="PM")
@@ -58,7 +58,7 @@ Fig 4 has TLV first, while Figs 3 and 5 have OLV first.
 Evidence of effect for both TLV and OLV (even with HKSJ).
 
 ## Fig 5: Arterial oxygen pressure (pO2)
-```{r, arterial, fig.height=6, fig.width=7}
+```{r, arterial, fig.height=6, fig.width=7, eval=FALSE}
 mod <- rma(yi, vi, data=dat, subset = (outcome1=="pO2" & time=="TLV"), method="PM")
 forest(mod, header="pO2 (TLV)", cex=1.5)
 # mod <- rma(yi, vi, data=dat, subset = (outcome1=="pO2" & time=="OLV"), method="PM")
