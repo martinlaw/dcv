@@ -31,3 +31,8 @@ dat <- escalc(measure="MD", data=initial.data, m1i=m1i, sd1i=sd1i, n1i=n1i, m2i=
 ```
 
 
+## Fig 2: Respiratory compliance (Cdyn)
+```{r Cdyn, fig.height=5, fig.width=7, results=FALSE}
+cdyn.olv <- rma(yi, vi, data=dat, subset = (outcome1=="Cdyn" & time=="OLV"), method="PM")
+forest(cdyn.olv, header="Cdyn (OLV)", cex=1.5)
+```
