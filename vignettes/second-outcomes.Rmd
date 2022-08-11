@@ -20,12 +20,5 @@ knitr::opts_chunk$set(
 
 ```{r library}
 library(metafor)
-library(xtable)
 ```
 
-
-
-## Load data
-```{r load, echo=FALSE}
-initial.data <- read.csv(file="../data/secondary-outcomes.csv")
-```
