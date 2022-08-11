@@ -29,3 +29,71 @@ library(metafor)
 initial.data <- read.csv(file="../data/secondary-outcomes.csv")
 dat <- escalc(measure="MD", data=initial.data, m1i=m1i, sd1i=sd1i, n1i=n1i, m2i=m2i, sd2i=sd2i, n2i=n2i, slab=study)
 ```
+
+
+
+
+## Fig 2: Respiratory compliance (Cdyn)
+```{r Cdyn, fig.height=5, fig.width=7, results=FALSE}
+cdyn.olv <- rma(yi, vi, data=dat, subset = (outcome1=="Cdyn" & time=="OLV"), method="PM")
+forest(cdyn.olv, header="Cdyn (OLV)", cex=1.5)
+```
+
+
+## Fig 3: Plateau pressure (Plat)
+```{r plateau, fig.height=5, fig.width=7, results=FALSE}
+plat.tlv <- rma(yi, vi, data=dat, subset = (outcome1=="Plat" & time=="TLV"), method="PM")
+forest(plat.tlv, header="Plateau (TLV)", cex=1.5)
+plat.olv <- rma(yi, vi, data=dat, subset = (outcome1=="Plat" & time=="OLV"), method="PM")
+forest(plat.olv, header="Plateau (OLV)", cex=1.5)
+```
+
+Figure 3 in paper has different headings compared to Figs 4 and 5.
+
+## Fig 4: Peak inspiratory pressure (Peak)
+```{r peak, fig.height=6, fig.width=7, results=FALSE}
+peak.tlv <- rma(yi, vi, data=dat, subset = (outcome1=="Peak" & time=="TLV"), method="PM")
+forest(peak.tlv, header="Peak (TLV)", cex=1.5)
+peak.olv <- rma(yi, vi, data=dat, subset = (outcome1=="Peak" & time=="OLV"), method="PM")
+forest(peak.olv, header="Peak (OLV)", cex=1.5)
+```
+Fig 4 has TLV first, while Figs 3 and 5 have OLV first.
+
+## Fig 5: Arterial oxygen pressure (pO2)
+```{r arterial, fig.height=6, fig.width=7, results=FALSE}
+po2.tlv <- rma(yi, vi, data=dat, subset = (outcome1=="pO2" & time=="TLV"), method="PM")
+forest(po2.tlv, header="pO2 (TLV)", cex=1.5)
+# po2.olv <- rma(yi, vi, data=dat, subset = (outcome1=="pO2" & time=="OLV"), method="PM")
+# Error when using default options. Fix:
+po2.olv <- rma(yi, vi, data=dat, subset = outcome1=="pO2" & time=="OLV", method="PM", control=list(tau2.max=1000))
+forest(po2.olv, header="pO2 (OLV)", cex=1.5)
+```
+TLV and OLV data have been mixed up in the document (assuming the Excel sheet is correct)
+
+
+```{r collate results, results=FALSE}
+est.ci <- function(mod){
+  est.with.ci <- paste(round(mod$b, 2), " (", round(mod$ci.lb, 2), ", ", round(mod$ci.ub, 2), ")", sep="")
+  est.with.ci
+}
+olv.results <- c(est.ci(cdyn.olv), est.ci(plat.olv), est.ci(peak.olv), est.ci(po2.olv))
+tlv.results <- c("---", est.ci(plat.tlv), est.ci(peak.tlv), est.ci(po2.tlv))
+second.results <- data.frame(OLV=olv.results,
+                             TLV=tlv.results)
+rownames(second.results) <- c("Cdyn", "Plateau", "Peak", "pO2")
+results.tab <- xtable(second.results, align="rrr")
+```
+
+## Results
+```{r table, results='asis'}
+print(results.tab, type="html")
+```
+
+There is evidence of an effect for:
+
+  * Cdyn (OLV)
+  * Plateau (OLV only)
+  * Peak (OLV and TLV)
+  * pO2 (OLV and TLV)
+
+NOTE: Using HKSJ modification has negligible effect on results, with one exception: Plateau+OLV summary estimate is not significant when using HKSJ modification.
