@@ -157,9 +157,10 @@ print(results.tab, type="html")
 ```
 
 There is evidence of an effect for:
-- Cdyn (OLV)
-- Plateau (OLV only)
-- Peak (OLV and TLV)
-- pO2 (OLV and TLV)
+
+  * Cdyn (OLV)
+  * Plateau (OLV only)
+  * Peak (OLV and TLV)
+  * pO2 (OLV and TLV)
 
 NOTE: Using HKSJ modification has negligible effect on results, with one exception: Plateau+OLV summary estimate is not significant when using HKSJ modification.
