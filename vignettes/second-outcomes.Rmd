@@ -1,7 +1,7 @@
 ---
 title: "second-outcomes"
 resource_files:
-    - data/secondary-outcomes.csv
+    - ../data
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{second-outcomes}
@@ -16,11 +16,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(dcv)
-```
+
 
 ## Load data
 ```{r load, echo=FALSE}
-initial.data <- read.csv(file="data/secondary-outcomes.csv")
+initial.data <- read.csv(file="../data/secondary-outcomes.csv")
 ```
