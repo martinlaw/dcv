@@ -21,5 +21,4 @@ knitr::opts_chunk$set(
 ## Load data
 ```{r load, echo=FALSE}
 initial.data <- read.csv(file="../data/secondary-outcomes.csv")
-dat <- escalc(measure="MD", data=initial.data, m1i=m1i, sd1i=sd1i, n1i=n1i, m2i=m2i, sd2i=sd2i, n2i=n2i, slab=study)
 ```
