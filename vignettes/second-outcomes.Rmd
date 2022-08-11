@@ -1,5 +1,7 @@
 ---
 title: "second-outcomes"
+resourse_files:
+    - data/secondary_outcomes.csv
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{second-outcomes}
@@ -20,5 +22,5 @@ library(dcv)
 
 ## Load data
 ```{r load, echo=FALSE}
-initial.data <- read.csv(file="data/secondary-outcomes.csv")
+initial.data <- read.csv(file="data/secondary_outcomes.csv")
 ```
