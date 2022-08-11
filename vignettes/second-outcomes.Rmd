@@ -36,3 +36,13 @@ dat <- escalc(measure="MD", data=initial.data, m1i=m1i, sd1i=sd1i, n1i=n1i, m2i=
 cdyn.olv <- rma(yi, vi, data=dat, subset = (outcome1=="Cdyn" & time=="OLV"), method="PM")
 forest(cdyn.olv, header="Cdyn (OLV)", cex=1.5)
 ```
+
+## Fig 3: Plateau pressure (Plat)
+```{r plateau, fig.height=5, fig.width=7, results=FALSE}
+plat.tlv <- rma(yi, vi, data=dat, subset = (outcome1=="Plat" & time=="TLV"), method="PM")
+forest(plat.tlv, header="Plateau (TLV)", cex=1.5)
+plat.olv <- rma(yi, vi, data=dat, subset = (outcome1=="Plat" & time=="OLV"), method="PM")
+forest(plat.olv, header="Plateau (OLV)", cex=1.5)
+```
+
+Figure 3 in paper has different headings compared to Figs 4 and 5.
