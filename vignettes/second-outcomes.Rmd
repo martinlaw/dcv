@@ -18,6 +18,10 @@ knitr::opts_chunk$set(
 
 
 
+```{r library, results="hide", message=FALSE}
+library(metafor)
+library(xtable)
+```
 
 
 
