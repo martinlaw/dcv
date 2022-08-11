@@ -5,9 +5,8 @@ articles:
   dcv-atelectasis: dcv-atelectasis.html
   dcv-pneumonia: dcv-pneumonia.html
   index: index.html
-  secondary-outcomes: secondary-outcomes.html
   subgroup: subgroup.html
-last_built: 2022-08-10T14:54Z
+last_built: 2022-08-11T11:29Z
 urls:
   reference: https://martinlaw.github.io/dcv/reference
   article: https://martinlaw.github.io/dcv/articles
