@@ -71,17 +71,3 @@ forest(po2.olv, header="pO2 (OLV)", cex=1.5)
 TLV and OLV data have been mixed up in the document (assuming the Excel sheet is correct)
 
 
-
-
-```{r collate results, results=FALSE}
-est.ci <- function(mod){
-  est.with.ci <- paste(round(mod$b, 2), " (", round(mod$ci.lb, 2), ", ", round(mod$ci.ub, 2), ")", sep="")
-  est.with.ci
-}
-olv.results <- c(est.ci(cdyn.olv), est.ci(plat.olv), est.ci(peak.olv), est.ci(po2.olv))
-tlv.results <- c("---", est.ci(plat.tlv), est.ci(peak.tlv), est.ci(po2.tlv))
-second.results <- data.frame(OLV=olv.results,
-                             TLV=tlv.results)
-rownames(second.results) <- c("Cdyn", "Plateau", "Peak", "pO2")
-results.tab <- xtable(second.results, align="rrr")
-```
