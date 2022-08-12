@@ -81,4 +81,5 @@ tlv.results <- c("---", est.ci(plat.tlv), est.ci(peak.tlv), est.ci(po2.tlv))
 second.results <- data.frame(OLV=olv.results,
                              TLV=tlv.results)
 rownames(second.results) <- c("Cdyn", "Plateau", "Peak", "pO2")
+xtable::results.tab <- xtable(second.results, align="rrr")
 ```
