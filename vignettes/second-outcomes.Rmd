@@ -46,3 +46,14 @@ forest(plat.olv, header="Plateau (OLV)", cex=1.5)
 ```
 
 Figure 3 in paper has different headings compared to Figs 4 and 5.
+
+
+
+## Fig 4: Peak inspiratory pressure (Peak)
+```{r peak, fig.height=6, fig.width=7, results=FALSE}
+peak.tlv <- rma(yi, vi, data=dat, subset = (outcome1=="Peak" & time=="TLV"), method="PM")
+forest(peak.tlv, header="Peak (TLV)", cex=1.5)
+peak.olv <- rma(yi, vi, data=dat, subset = (outcome1=="Peak" & time=="OLV"), method="PM")
+forest(peak.olv, header="Peak (OLV)", cex=1.5)
+```
+Fig 4 has TLV first, while Figs 3 and 5 have OLV first.
