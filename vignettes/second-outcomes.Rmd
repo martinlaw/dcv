@@ -57,3 +57,16 @@ peak.olv <- rma(yi, vi, data=dat, subset = (outcome1=="Peak" & time=="OLV"), met
 forest(peak.olv, header="Peak (OLV)", cex=1.5)
 ```
 Fig 4 has TLV first, while Figs 3 and 5 have OLV first.
+
+
+## Fig 5: Arterial oxygen pressure (pO2)
+```{r arterial, fig.height=6, fig.width=7, results=FALSE}
+po2.tlv <- rma(yi, vi, data=dat, subset = (outcome1=="pO2" & time=="TLV"), method="PM")
+forest(po2.tlv, header="pO2 (TLV)", cex=1.5)
+# po2.olv <- rma(yi, vi, data=dat, subset = (outcome1=="pO2" & time=="OLV"), method="PM")
+# Error when using default options. Fix:
+po2.olv <- rma(yi, vi, data=dat, subset = outcome1=="pO2" & time=="OLV", method="PM", control=list(tau2.max=1000))
+forest(po2.olv, header="pO2 (OLV)", cex=1.5)
+```
+TLV and OLV data have been mixed up in the document (assuming the Excel sheet is correct)
+
