@@ -78,4 +78,6 @@ est.ci <- function(mod){
 }
 olv.results <- c(est.ci(cdyn.olv), est.ci(plat.olv), est.ci(peak.olv), est.ci(po2.olv))
 tlv.results <- c("---", est.ci(plat.tlv), est.ci(peak.tlv), est.ci(po2.tlv))
+second.results <- data.frame(OLV=olv.results,
+                             TLV=tlv.results)
 ```
