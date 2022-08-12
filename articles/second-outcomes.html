@@ -79,7 +79,8 @@
 <span><span class="co">#&gt; Loading required package: metadat</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Loading the 'metafor' package (version 3.4-0). For an</span></span>
-<span><span class="co">#&gt; introduction to the package please type: help(metafor)</span></span></code></pre></div>
+<span><span class="co">#&gt; introduction to the package please type: help(metafor)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://xtable.r-forge.r-project.org/" class="external-link">xtable</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="load-data">Load data<a class="anchor" aria-label="anchor" href="#load-data"></a>
 </h2>
@@ -139,7 +140,8 @@
 <span><span class="va">tlv.results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"---"</span>, <span class="fu">est.ci</span><span class="op">(</span><span class="va">plat.tlv</span><span class="op">)</span>, <span class="fu">est.ci</span><span class="op">(</span><span class="va">peak.tlv</span><span class="op">)</span>, <span class="fu">est.ci</span><span class="op">(</span><span class="va">po2.tlv</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">second.results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>OLV<span class="op">=</span><span class="va">olv.results</span>,</span>
 <span>                             TLV<span class="op">=</span><span class="va">tlv.results</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">second.results</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Cdyn"</span>, <span class="st">"Plateau"</span>, <span class="st">"Peak"</span>, <span class="st">"pO2"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">second.results</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Cdyn"</span>, <span class="st">"Plateau"</span>, <span class="st">"Peak"</span>, <span class="st">"pO2"</span><span class="op">)</span></span>
+<span><span class="va">results.tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/xtable/man/xtable.html" class="external-link">xtable</a></span><span class="op">(</span><span class="va">second.results</span>, align<span class="op">=</span><span class="st">"rrr"</span><span class="op">)</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
