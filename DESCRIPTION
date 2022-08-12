@@ -16,4 +16,5 @@ VignetteBuilder: knitr
 URL: https://martinlaw.github.io/dcv/
 Imports: 
     metafor,
-    readxl
+    readxl,
+    xtable
