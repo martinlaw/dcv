@@ -14,4 +14,4 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Click Articles -> Meta-Analysis on Postoperative Pneumonia for analysis
+## Click Articles drop-down tab for all analysis

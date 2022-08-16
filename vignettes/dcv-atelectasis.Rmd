@@ -37,8 +37,8 @@ dat.atelectasis <- escalc(measure="RR",
 
 ## Primary analysis: Paul-Mandel without Hartung-Knapp-Sidik-Jonkman (HKSJ) modification 
 ```{r PM, fig.height=4, fig.width=7}
-pm <- rma(yi, vi, data=dat.atelectasis, method="PM") 
-forest(pm,
+pm.atelectasis <- rma(yi, vi, data=dat.atelectasis, method="PM") 
+forest(pm.atelectasis,
        atransf=exp,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
 ```
@@ -48,23 +48,23 @@ These results agree with the paper (Fig 2, bottom).
 ### Sensitivity analysis 1: FE model
 
 ```{r FE, fig.height=4, fig.width=7}
-fe <- rma(yi, vi, data=dat.atelectasis, method="FE") 
-forest(fe, 
+fe.atelectasis <- rma(yi, vi, data=dat.atelectasis, method="FE") 
+forest(fe.atelectasis, 
        atransf=exp,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
 ```
 
 Note: The standard RE model without HKSJ modification is identical (not shown):
 ```{r RE, fig.height=4, fig.width=7}
-re <- rma(yi, vi, data=dat.atelectasis, method="REML") 
+re.atelectasis <- rma(yi, vi, data=dat.atelectasis, method="REML") 
 ```
 
 
 
 ### Sensitivity analysis 2: Paule-Mandel with HKSJ modification 
 ```{r PMHK, fig.height=4, fig.width=7}
-pmhk <- rma(yi, vi, data=dat.atelectasis, method="PM", test="knha") 
-forest(pmhk,
+pmhk.atelectasis <- rma(yi, vi, data=dat.atelectasis, method="PM", test="knha") 
+forest(pmhk.atelectasis,
        atransf=exp,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
 ```
@@ -87,8 +87,8 @@ dat.atelectasis.OR <- escalc(measure="OR",
 
 ```{r "PM - OR", fig.height=4, fig.width=7}
 
-pm.OR <- rma(yi, vi, data=dat.atelectasis.OR, method="PM") 
-forest(pm.OR,
+pm.OR.atelectasis <- rma(yi, vi, data=dat.atelectasis.OR, method="PM") 
+forest(pm.OR.atelectasis,
        atransf=exp,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
 ```
@@ -100,11 +100,11 @@ Results are similar to primary analysis results.
 ### Sensitivity analysis 4: leave-one-out analysis
 ### Atelectasis
 ```{r leave one out atel, fig.height=4, fig.width=7}
-leave1.atel <- leave1out(pm)
+leave1.atel <- leave1out(pm.atelectasis)
 forest.default(x=leave1.atel$estimate, ci.lb=leave1.atel$ci.lb, ci.ub=leave1.atel$ci.ub,
                slab=paste("Omitting ", leave1.atel$slab, sep=""),atransf=exp,
-               at=log(c(0.15, 0.25, exp(pm$b), 1, 4)), xlim=log(c(0.01, 4.5)),
-               refline=pm$b
+               at=log(c(0.15, 0.25, exp(pm.atelectasis$b), 1, 4)), xlim=log(c(0.01, 4.5)),
+               refline=pm.atelectasis$b
               )
 lines(x=log(c(1, 1)), y=c(0, 6))
 ```
@@ -113,7 +113,7 @@ Results are almost identical to results in paper (difference of 0.01 in the uppe
 
 ### Funnel plot
 ```{r funnel, fig.height=4, fig.width=6}
-funnel(pm, main="Standard Error")
-regtest(pm)
+funnel(pm.atelectasis, main="Standard Error")
+regtest(pm.atelectasis)
 ```
 

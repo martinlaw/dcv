@@ -50,21 +50,34 @@ po2.olv <- rma(yi, vi, data=dat, subset = outcome1=="pO2" & time=="OLV", method=
 
 
 ## Collated results
-```{r collate results, echo=FALSE, results="asis"}
+```{r collate results, echo=FALSE, results='asis'}
 est.ci <- function(mod){
-  est.with.ci <- paste(round(mod$b, 2), " (", round(mod$ci.lb, 2), ", ", round(mod$ci.ub, 2), ")", sep="")
+  est.with.ci <- paste(round(mod$b, 1), " (", round(mod$ci.lb, 1), ", ", round(mod$ci.ub, 1), ")", sep="")
   est.with.ci
 }
-olv.results <- c(est.ci(cdyn.olv), est.ci(plat.olv), est.ci(peak.olv), est.ci(po2.olv))
-tlv.results <- c("---", est.ci(plat.tlv), est.ci(peak.tlv), est.ci(po2.tlv))
-second.results <- data.frame(OLV=olv.results,
-                             TLV=tlv.results)
-rownames(second.results) <- c("Cdyn", "Plateau", "Peak", "pO2")
-results.tab <- xtable(second.results, align="rrr")
-print(results.tab, type="html")
+olv.est <- c(est.ci(cdyn.olv), est.ci(plat.olv), est.ci(peak.olv), est.ci(po2.olv))
+tlv.est <- c(est.ci(plat.tlv), est.ci(peak.tlv), est.ci(po2.tlv))
+
+olv.pval <- round(c(cdyn.olv$pval, plat.olv$pval, peak.olv$pval, po2.olv$pval), 3)
+tlv.pval <- round(c(plat.tlv$pval, peak.tlv$pval, po2.tlv$pval), 3)
+
+olv.I2 <- round(c(cdyn.olv$I2, plat.olv$I2, peak.olv$I2, po2.olv$I2), 1)
+tlv.I2 <- round(c(plat.tlv$I2, peak.tlv$I2, po2.tlv$I2), 1)
+
+olv.results <- data.frame(est=olv.est, p.value=olv.pval, I2=olv.I2)
+rownames(olv.results) <- c("Cdyn", "Plateau", "Peak", "PaO2")
+
+tlv.results <- data.frame(est=tlv.est, p.value=tlv.pval, I2=tlv.I2)
+rownames(tlv.results) <- c("Plateau", "Peak", "PaO2")
+
+olv.tab <- xtable(olv.results, align="rrrr", digits=c(0,1,3,1), caption="OLV results")
+tlv.tab <- xtable(tlv.results, align="rrrr", digits=c(0,1,3,1), caption="TLV results")
+
+print(olv.tab, type="html")
+print(tlv.tab, type="html")
 ```
 
-Evidence of effect in all secondary outcomes except Plateau+TLV. These effects persist when the HKSJ modification is used, with the exception of Plateau+OLV.
+Evidence of effect in all secondary outcomes except Plateau+TLV. These effects persist when the HKSJ modification is used, with the exception of Plateau+OLV (results not shown).
 
 
 ## Notes on secondary outcome figures in draft
@@ -75,26 +88,32 @@ Evidence of effect in all secondary outcomes except Plateau+TLV. These effects p
 
 ## Forest plots
 ### Fig 2: Respiratory compliance (Cdyn)
-```{r Cdyn, fig.height=5, fig.width=7, results=FALSE, echo=FALSE}
-forest(cdyn.olv, header="Cdyn (OLV)", cex=1.5)
+```{r Cdyn, fig.height=4, fig.width=7, results=FALSE, echo=FALSE}
+forest(cdyn.olv, header="Cdyn (OLV)", mlab="")
+text(x=-16, y=-1, pos=4, labels=bquote(paste(I^2, "=", .(formatC(cdyn.olv$I2, digits=1, format="f")))))
 ```
 
 ### Fig 3: Plateau pressure (Plat)
-```{r plateau, fig.height=5, fig.width=7, results=FALSE, echo=FALSE}
-forest(plat.tlv, header="Plateau (TLV)", cex=1.5)
-forest(plat.olv, header="Plateau (OLV)", cex=1.5)
+```{r plateau, fig.height=4, fig.width=7, results=FALSE, echo=FALSE}
+forest(plat.tlv, header="Plateau (TLV)", mlab="")
+text(x=-20, y=-1, pos=4, labels=bquote(paste(I^2, "=", .(formatC(plat.tlv$I2, digits=1, format="f")))))
+forest(plat.olv, header="Plateau (OLV)", mlab="")
+text(x=-20, y=-1, pos=4, labels=bquote(paste(I^2, "=", .(formatC(plat.olv$I2, digits=1, format="f")))))
 ```
 
 ### Fig 4: Peak inspiratory pressure (Peak)
-```{r peak, fig.height=6, fig.width=7, results=FALSE, echo=FALSE}
-forest(peak.tlv, header="Peak (TLV)", cex=1.5)
-forest(peak.olv, header="Peak (OLV)", cex=1.5)
+```{r peak, fig.height=4, fig.width=7, results=FALSE, echo=FALSE}
+forest(peak.tlv, header="Peak (TLV)", mlab="")
+text(x=-18, y=-1, pos=4, labels=bquote(paste(I^2, "=", .(formatC(peak.tlv$I2, digits=1, format="f")))))
+forest(peak.olv, header="Peak (OLV)", mlab="")
+text(x=-22, y=-1, pos=4, labels=bquote(paste(I^2, "=", .(formatC(peak.olv$I2, digits=1, format="f")))))
 ```
 
 ### Fig 5: Arterial oxygen pressure (pO2)
-```{r arterial, fig.height=6, fig.width=7, results=FALSE, echo=FALSE}
-forest(po2.tlv, header="pO2 (TLV)", cex=1.5)
-
-forest(po2.olv, header="pO2 (OLV)", cex=1.5)
+```{r arterial, fig.height=4, fig.width=7, results=FALSE, echo=FALSE}
+forest(po2.tlv, header="pO2 (TLV)", mlab="")
+text(x=-200, y=-1, pos=4, labels=bquote(paste(I^2, "=", .(formatC(po2.tlv$I2, digits=1, format="f")))))
+forest(po2.olv, header="pO2 (OLV)", mlab="")
+text(x=-200, y=-1, pos=4, labels=bquote(paste(I^2, "=", .(formatC(po2.olv$I2, digits=1, format="f")))))
 ```
 
