@@ -22,10 +22,10 @@ library(metafor)
 ## Input data
 ```{r atelectasis}
 dat.atelectasis <- escalc(measure="RR",
-              ai=c( 3,  2,  1,  1,  0),
-              bi=c(15, 33, 43, 44, 15),
-              ci=c( 4,  6,  4,  2,  1),
-              di=c(15, 29, 38, 43, 14),
+              ai=c( 3,  2,  4,  1,  0),
+              bi=c(15, 33, 40, 44, 15),
+              ci=c( 4,  6,  6,  2,  1),
+              di=c(15, 29, 36, 43, 14),
               slab=c("Boules et al, 2011",
                      "Mahmoud et al, 2017",
                      "Li et al (Standard), 2020",
