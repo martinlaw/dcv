@@ -42,7 +42,10 @@ forest(pm.atelectasis,
        atransf=exp,
        at=log(c(0.01, 0.1, 0.5, 1, 4, 10)))
 ```
-These results agree with the paper (Fig 2, bottom).
+
+
+Before Li et al. correction, these results agreed with the paper (Fig 2, bottom).
+
 
 ## Sensitivity analysis
 ### Sensitivity analysis 1: FE model
@@ -109,7 +112,8 @@ forest.default(x=leave1.atel$estimate, ci.lb=leave1.atel$ci.lb, ci.ub=leave1.ate
 lines(x=log(c(1, 1)), y=c(0, 6))
 ```
 
-Results are almost identical to results in paper (difference of 0.01 in the upper confidence interval for Mahmoud et al.).
+Results are almost identical to results in paper (again before Li et al. correction).
+
 
 ### Funnel plot
 ```{r funnel, fig.height=4, fig.width=6}
