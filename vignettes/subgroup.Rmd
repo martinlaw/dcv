@@ -1,11 +1,11 @@
 ---
-title: 'Sensitivity analysis: leave one out'
+title: 'Subgroup analysis'
 author: "Martin Law"
 date: '2022-07-15'
 output: html_document
 ---
 ---
-title: "Sensitivity analysis"
+title: "Subgroup analysis"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{my-vignette}
