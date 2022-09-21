@@ -45,7 +45,7 @@
     <a class="dropdown-item" href="../articles/dcv-pneumonia.html">Meta-Analysis on Postoperative Pneumonia</a>
     <a class="dropdown-item" href="../articles/index.html">Home</a>
     <a class="dropdown-item" href="../articles/second-outcomes.html">Secondary outcomes</a>
-    <a class="dropdown-item" href="../articles/subgroup.html">Sensitivity analysis: leave one out</a>
+    <a class="dropdown-item" href="../articles/subgroup.html">Subgroup analysis</a>
   </div>
 </li>
       </ul>
@@ -98,7 +98,7 @@
 <h2 id="collated-results">Collated results<a class="anchor" aria-label="anchor" href="#collated-results"></a>
 </h2>
 <!-- html table generated in R 4.2.1 by xtable 1.8-4 package -->
-<!-- Mon Aug 22 14:59:04 2022 -->
+<!-- Wed Sep 21 16:40:52 2022 -->
 <table border="1" class="table">
 <caption align="bottom">
 OLV results
@@ -173,7 +173,7 @@ PaO2
 </td>
 </tr>
 </table>
-<!-- html table generated in R 4.2.1 by xtable 1.8-4 package --><!-- Mon Aug 22 14:59:04 2022 --><table border="1" class="table">
+<!-- html table generated in R 4.2.1 by xtable 1.8-4 package --><!-- Wed Sep 21 16:40:52 2022 --><table border="1" class="table">
 <caption align="bottom">
 TLV results
 </caption>
@@ -267,6 +267,167 @@ PaO2
 </h3>
 <p><img src="second-outcomes_files/figure-html/arterial-1.png" width="672"><img src="second-outcomes_files/figure-html/arterial-2.png" width="672"></p>
 </div>
+</div>
+<div class="section level2">
+<h2 id="attempt-to-recreate-paper-results">Attempt to recreate paper results<a class="anchor" aria-label="anchor" href="#attempt-to-recreate-paper-results"></a>
+</h2>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Fig 2: Respiratory compliance (Cdyn)</span></span>
+<span><span class="va">cdyn.olv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat</span>, subset <span class="op">=</span> <span class="op">(</span><span class="va">outcome1</span><span class="op">==</span><span class="st">"Cdyn"</span> <span class="op">&amp;</span> <span class="va">time</span><span class="op">==</span><span class="st">"OLV"</span><span class="op">)</span>, method<span class="op">=</span><span class="st">"REML"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Fig 3: Plateau pressure (Plat)</span></span>
+<span><span class="va">plat.tlv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat</span>, subset <span class="op">=</span> <span class="op">(</span><span class="va">outcome1</span><span class="op">==</span><span class="st">"Plat"</span> <span class="op">&amp;</span> <span class="va">time</span><span class="op">==</span><span class="st">"TLV"</span><span class="op">)</span>, method<span class="op">=</span><span class="st">"REML"</span><span class="op">)</span></span>
+<span><span class="va">plat.olv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat</span>, subset <span class="op">=</span> <span class="op">(</span><span class="va">outcome1</span><span class="op">==</span><span class="st">"Plat"</span> <span class="op">&amp;</span> <span class="va">time</span><span class="op">==</span><span class="st">"OLV"</span><span class="op">)</span>, method<span class="op">=</span><span class="st">"REML"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Fig 4: Peak inspiratory pressure (Peak)</span></span>
+<span><span class="va">peak.tlv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat</span>, subset <span class="op">=</span> <span class="op">(</span><span class="va">outcome1</span><span class="op">==</span><span class="st">"Peak"</span> <span class="op">&amp;</span> <span class="va">time</span><span class="op">==</span><span class="st">"TLV"</span><span class="op">)</span>, method<span class="op">=</span><span class="st">"REML"</span><span class="op">)</span></span>
+<span><span class="va">peak.olv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat</span>, subset <span class="op">=</span> <span class="op">(</span><span class="va">outcome1</span><span class="op">==</span><span class="st">"Peak"</span> <span class="op">&amp;</span> <span class="va">time</span><span class="op">==</span><span class="st">"OLV"</span><span class="op">)</span>, method<span class="op">=</span><span class="st">"REML"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Fig 5: Arterial oxygen pressure (pO2)</span></span>
+<span><span class="va">po2.tlv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat</span>, subset <span class="op">=</span> <span class="op">(</span><span class="va">outcome1</span><span class="op">==</span><span class="st">"pO2"</span> <span class="op">&amp;</span> <span class="va">time</span><span class="op">==</span><span class="st">"TLV"</span><span class="op">)</span>, method<span class="op">=</span><span class="st">"REML"</span><span class="op">)</span></span>
+<span><span class="co"># po2.olv &lt;- rma(yi, vi, data=dat, subset = (outcome1=="pO2" &amp; time=="OLV"), method="PM")</span></span>
+<span><span class="co"># Error when using default options. Fix:</span></span>
+<span><span class="va">po2.olv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span><span class="va">yi</span>, <span class="va">vi</span>, data<span class="op">=</span><span class="va">dat</span>, subset <span class="op">=</span> <span class="va">outcome1</span><span class="op">==</span><span class="st">"pO2"</span> <span class="op">&amp;</span> <span class="va">time</span><span class="op">==</span><span class="st">"OLV"</span>, control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>tau2.max<span class="op">=</span><span class="fl">1000</span><span class="op">)</span>, method<span class="op">=</span><span class="st">"REML"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="collated-results-1">Collated results<a class="anchor" aria-label="anchor" href="#collated-results-1"></a>
+</h2>
+<!-- html table generated in R 4.2.1 by xtable 1.8-4 package -->
+<!-- Wed Sep 21 16:40:53 2022 -->
+<table border="1" class="table">
+<caption align="bottom">
+OLV results
+</caption>
+<tr>
+<th>
+</th>
+<th>
+est
+</th>
+<th>
+p.value
+</th>
+<th>
+I2
+</th>
+</tr>
+<tr>
+<td align="right">
+Cdyn
+</td>
+<td align="right">
+5.5 (3, 7.9)
+</td>
+<td align="right">
+0.000
+</td>
+<td align="right">
+89.3
+</td>
+</tr>
+<tr>
+<td align="right">
+Plateau
+</td>
+<td align="right">
+-3.5 (-6.5, -0.5)
+</td>
+<td align="right">
+0.022
+</td>
+<td align="right">
+88.2
+</td>
+</tr>
+<tr>
+<td align="right">
+Peak
+</td>
+<td align="right">
+-4.3 (-5.6, -3.1)
+</td>
+<td align="right">
+0.000
+</td>
+<td align="right">
+82.6
+</td>
+</tr>
+<tr>
+<td align="right">
+PaO2
+</td>
+<td align="right">
+25.4 (3.1, 47.8)
+</td>
+<td align="right">
+0.026
+</td>
+<td align="right">
+93.8
+</td>
+</tr>
+</table>
+<!-- html table generated in R 4.2.1 by xtable 1.8-4 package --><!-- Wed Sep 21 16:40:53 2022 --><table border="1" class="table">
+<caption align="bottom">
+TLV results
+</caption>
+<tr>
+<th>
+</th>
+<th>
+est
+</th>
+<th>
+p.value
+</th>
+<th>
+I2
+</th>
+</tr>
+<tr>
+<td align="right">
+Plateau
+</td>
+<td align="right">
+-2.7 (-6.1, 0.7)
+</td>
+<td align="right">
+0.124
+</td>
+<td align="right">
+92.1
+</td>
+</tr>
+<tr>
+<td align="right">
+Peak
+</td>
+<td align="right">
+-2.9 (-4.4, -1.3)
+</td>
+<td align="right">
+0.000
+</td>
+<td align="right">
+82.2
+</td>
+</tr>
+<tr>
+<td align="right">
+PaO2
+</td>
+<td align="right">
+18.6 (3.9, 33.2)
+</td>
+<td align="right">
+0.013
+</td>
+<td align="right">
+46.0
+</td>
+</tr>
+</table>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
