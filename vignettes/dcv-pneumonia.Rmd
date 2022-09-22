@@ -110,3 +110,23 @@ The results of the leave-one-out sensitivity analysis agree with the paper (page
 funnel(pm, main="Standard Error")
 regtest(pm)
 ```
+
+### Power
+```{r}
+results <- data.frame(  ai=c(3,   5,  2,  0,  1),
+                        bi=c(32, 39, 43, 15, 24),
+                        ci=c(6,   7,  4,  1,  2),
+                        di=c(29, 35, 41, 14, 23))
+results
+colSums(results)
+sum(results)
+library(metapower)
+metapower::mpower(study_size = 325,
+                  k = 5,
+                  i2 = 0,
+                  es_type = "or",
+                  test_type = "two-tailed",
+                  p = 0.05,
+                  con_table = c(11,20,153,142))
+```
+
