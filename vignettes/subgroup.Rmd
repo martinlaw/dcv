@@ -1,7 +1,9 @@
 ---
 title: 'Subgroup analysis'
+resource_files:
+    - ../data
 author: "Martin Law"
-date: '2022-07-15'
+date: '2022-09-23'
 output: html_document
 ---
 ---
@@ -22,6 +24,9 @@ knitr::opts_chunk$set(
 
 ```{r library, results="hide", message=FALSE}
 library(metafor)
+initial.data <- read.csv(file="../data/secondary-outcomes.csv")
+head(initial.data)
+dat <- escalc(measure="MD", data=initial.data, m1i=m1i, sd1i=sd1i, n1i=n1i, m2i=m2i, sd2i=sd2i, n2i=n2i, slab=study)
 ```
 
 
@@ -35,3 +40,13 @@ Data unclear:
 ### Tidal volume (>6 vs <=6mL/kg)
 ### PEEP (<0 vs 0)
 ### Anesthesia type (TIVA vs inhaled)
+```{r anesthesia}
+anes.tiva <- rma(yi, vi, data=dat, subset=(anesthesia=="tiva" & outcome1=="pO2"))
+anes.inhaled <- rma(yi, vi, data=dat, subset=(anesthesia=="inhaled" & outcome1=="pO2"))
+anes.comp <- data.frame(estimate = c(coef(anes.tiva), coef(anes.inhaled)), stderror = c(anes.tiva$se, anes.inhaled$se),
+                       meta = c("tiva","inhaled"), tau2 = round(c(anes.tiva$tau2, anes.inhaled$tau2),3))
+rma(estimate, sei=stderror, mods = ~ meta, method="FE", data=anes.comp, digits=3)
+```
+
+
+
